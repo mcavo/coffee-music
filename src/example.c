@@ -22,11 +22,11 @@ const int NUM_SAMPLES = (WAVFILE_SAMPLES_PER_SECOND);
 int main()
 {
 	short waveform[NUM_SAMPLES];
-	//En orden, las frecuencias en el vector frec corresponden a:
-	// DO RE MI FA SOL LA SI
-	// C D E F G A B
-	double frec[7] = {261.6, 293.7, 329.6, 349.2, 392.0, 440.0, 493.9};
-	double frequency = frec[0];
+	//En orden, las frecuencias en el vector frec corresponden a las notas y notas con sostenidos (MI y SI no tienen sostenido):
+	// DO DO# RE RE# MI FA FA# SOL SOL# LA LA# SI
+	// C C# D D# E F F# G G# A A# B
+	double frequencies[NOTES] = {261.626, 277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440.0, 466.164, 493.883};
+
 	int volume = 32000;
 	int length = NUM_SAMPLES;
 	int i,j;
@@ -40,12 +40,12 @@ int main()
 		
 
 	//Agrego ciclo para formar una waveform por cada nota de la escala
-	//Y asi el sound.wav sean las 7 notas de la escala
-	for(j=0;j<7;j++){
+	//Y asi el sound.wav sean las 12 notas del vector frequencies (las 7 mas sostenidos)
+	for(j=0;j<NOTES;j++){
 
 		for(i=0;i<length;i++) {
 			double t = (double) i / WAVFILE_SAMPLES_PER_SECOND;
-			waveform[i] = volume*sin(frec[j]*t*2*M_PI);
+			waveform[i] = volume*sin(frequencies[j]*t*2*M_PI);
 		
 		}
 		
