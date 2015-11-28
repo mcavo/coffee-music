@@ -22,7 +22,11 @@ const int NUM_SAMPLES = (WAVFILE_SAMPLES_PER_SECOND*2);
 int main()
 {
 	short waveform[NUM_SAMPLES];
-	double frequency = 440.0;
+	//En orden, las frecuencias en el vector frec corresponden a:
+	// DO RE MI FA SOL LA SI
+	// C D E F G A B
+	double[] frec = [261.6, 293.7, 329.6, 349.2, 392.0, 440.0, 493.9];
+	double frequency = frec[0];
 	int volume = 32000;
 	int length = NUM_SAMPLES;
 
