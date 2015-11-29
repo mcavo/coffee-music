@@ -13,6 +13,7 @@ char* concat_str(int argc, ...);
 %token <strval> MUSIC
 %token <strval> NUMBER
 %token <strval> TYPE
+%token <strval> MUSIC_TYPE
 %token MAIN_TOKEN VOID_TOKEN RETURN_TOKEN
 %token IF_TOKEN ELSE_TOKEN FOR_TOKEN DO_TOKEN WHILE_TOKEN SWITCH_TOKEN CASE_TOKEN DEFAULT_TOKEN BREAK_TOKEN
 %token PLUS_TOKEN MINUS_TOKEN MULT_TOKEN DIV_TOKEN MOD_TOKEN
@@ -22,10 +23,12 @@ char* concat_str(int argc, ...);
 %token COLON_TOKEN SEMICOLON_TOKEN COMMA_TOKEN 
 %token WRITE_TOKEN 
 
+
 %type <strval> Main
 %type <strval> Variables
 %type <strval> Variable
 %type <strval> Block
+%type <strval> MainBlock
 %type <strval> Content
 %type <strval> ForExpression
 %type <strval> Expression
@@ -40,25 +43,27 @@ char* concat_str(int argc, ...);
    char* strval;
 }
 
-%start Program
+%start Main
 
 %%
 
 Main 
-   : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN Block
+   : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN MainBlock
       { $$ = concat_str(3, $1, " main ()\n",$6); }
    ;
 
 Variables
-   : Variables Variable SEMICOLON 
+   : Variables Variable SEMICOLON_TOKEN
       { $$ = concat_str(3, $1, $2, ";\n"); }
-   | Variable SEMICOLON
+   | Variable SEMICOLON_TOKEN
       { $$ = concat_str(2, $1, ";\n"); }
    ;
 
 Variable 
    : TYPE NAME
       { $$ = concat_str( 2, $1, $2); }
+   | MUSIC_TYPE NAME
+      { $$ = concat_str( 2, "char* ", $2);}
    ;
 
 
@@ -67,9 +72,14 @@ Block
       { $$ = concat_str( 3, "{\n", $2, "\n}"); }
    ;
 
+MainBlock
+   : OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN 
+      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"music.wav\");\n", $2, "\n wavfile_close(music); \n return 0;}"); }
+   ;
+
 Content
    : Variables Content
-   { $$ = concat_str( 2, $1, $3); }  
+   { $$ = concat_str( 2, $1, $2); }  
    | Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content  
       { $$ = concat_str( 5, $1, " = ", $3, ";\n", $5); }
    | NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content       
@@ -86,9 +96,13 @@ Content
       { $$ = concat_str( 6, "switch ( ", $3, " )\n{\n", $6, "\n}", $8); }
    | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
       { $$ = concat_str( 7, "do\n", $2, "\n", "while ( ", $5, " );\n", $8); }
-   | BREAK_TOKEN SEMICOLON_TOKEN
+   | BREAK_TOKEN SEMICOLON_TOKEN Content
       { $$ = "break;\n"; }
-   | 
+   | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+      { $$ = concat_str( 3, "wavfile_write_music( music, ", $3, ");");}
+   | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+      { $$ = concat_str( 3, "wavfile_write_music( music, %"", $3, "%""););}
+   |
       { $$ = ""; }
    ;
 
@@ -168,7 +182,7 @@ Termin
    | NUMBER
       { $$ = $1; }
    | MUSIC
-      { $$ = $1; }
+      { $$ = concat_str(3, "\"", $1, "\""); }
    ;
 
 Cases 

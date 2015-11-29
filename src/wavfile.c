@@ -86,6 +86,20 @@ void wavfile_close( FILE *file )
 	fclose(file);
 }
 
+void wavfile_write_music( FILE *file, char* music){
+	int i;
+	char[3] nota;
+	for(i=0; music[i]!= 0; i++){
+		if(music[i+1]=='#'){
+			nota = [music[i] , music[++i], 0];
+		}else{
+			nota = [music[i], 0, 0]
+		}
+		wavfile_write_note(file, nota);
+	}
+	return;
+}
+
 void wavfile_write_note( FILE *file, char *nota) {
 	if ( file==NULL || nota==NULL ) {
 		printf("couldn't open sound.wav for writing: %s",strerror(errno));
