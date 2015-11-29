@@ -76,13 +76,10 @@
      CLOSE_PARENTHESIS_TOKEN = 292,
      OPEN_BRACKET_TOKEN = 293,
      CLOSE_BRACKET_TOKEN = 294,
-     OPEN_SQR_BRACKET_TOKEN = 295,
-     CLOSE_SQR_BRACKET_TOKEN = 296,
-     COLON_TOKEN = 297,
-     SEMICOLON_TOKEN = 298,
-     COMMA_TOKEN = 299,
-     UNDERSCORE_TOKEN = 300,
-     WRITE_TOKEN = 301
+     COLON_TOKEN = 295,
+     SEMICOLON_TOKEN = 296,
+     COMMA_TOKEN = 297,
+     WRITE_TOKEN = 298
    };
 #endif
 /* Tokens.  */
@@ -123,25 +120,22 @@
 #define CLOSE_PARENTHESIS_TOKEN 292
 #define OPEN_BRACKET_TOKEN 293
 #define CLOSE_BRACKET_TOKEN 294
-#define OPEN_SQR_BRACKET_TOKEN 295
-#define CLOSE_SQR_BRACKET_TOKEN 296
-#define COLON_TOKEN 297
-#define SEMICOLON_TOKEN 298
-#define COMMA_TOKEN 299
-#define UNDERSCORE_TOKEN 300
-#define WRITE_TOKEN 301
+#define COLON_TOKEN 295
+#define SEMICOLON_TOKEN 296
+#define COMMA_TOKEN 297
+#define WRITE_TOKEN 298
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 53 "coffee-music.y"
+#line 62 "coffee-music.y"
 {
    char* strval;
 }
 /* Line 1529 of yacc.c.  */
-#line 145 "y.tab.h"
+#line 139 "y.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

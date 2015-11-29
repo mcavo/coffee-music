@@ -1,21 +1,9 @@
 Terminals which are not used
 
    NOT_TOKEN
-   OPEN_SQR_BRACKET_TOKEN
-   CLOSE_SQR_BRACKET_TOKEN
-   UNDERSCORE_TOKEN
 
 
-State 62 conflicts: 11 reduce/reduce
-State 65 conflicts: 1 shift/reduce
-State 97 conflicts: 5 shift/reduce
-State 98 conflicts: 5 shift/reduce
-State 99 conflicts: 5 shift/reduce
-State 100 conflicts: 5 shift/reduce
-State 101 conflicts: 5 shift/reduce
-State 108 conflicts: 2 shift/reduce
-State 109 conflicts: 2 shift/reduce
-State 113 conflicts: 1 shift/reduce
+State 63 conflicts: 1 shift/reduce
 
 
 Grammar
@@ -24,154 +12,150 @@ Grammar
 
     1 Main: TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN MainBlock
 
-    2 Variables: Variables Variable SEMICOLON_TOKEN
-    3          | Variable SEMICOLON_TOKEN
+    2 Variables: Variable SEMICOLON_TOKEN
 
-    4 Variable: TYPE NAME
-    5         | MUSIC_TYPE NAME
+    3 Variable: TYPE NAME
+    4         | MUSIC_TYPE NAME
 
-    6 Block: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN
+    5 Block: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN
 
-    7 MainBlock: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN
+    6 MainBlock: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN
 
-    8 Content: Variables Content
-    9        | Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
-   10        | NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
-   11        | WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   12        | FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   13        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   14        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
-   15        | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
-   16        | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-   17        | BREAK_TOKEN SEMICOLON_TOKEN Content
-   18        | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-   19        | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-   20        | /* empty */
+    7 Content: Variables Content
+    8        | Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
+    9        | NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
+   10        | WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   11        | FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   12        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   13        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
+   14        | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   15        | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   16        | BREAK_TOKEN SEMICOLON_TOKEN Content
+   17        | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   18        | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   19        | /* empty */
 
-   21 ForExpression: NAME ASSIGN_TOKEN Expression
-   22              | ForExpression COMMA_TOKEN ForExpression
-   23              | /* empty */
+   20 ForExpression: NAME ASSIGN_TOKEN Expression
+   21              | ForExpression COMMA_TOKEN ForExpression
+   22              | /* empty */
 
-   24 Expression: LogicalExpression
-   25           | ArithmeticalExpression
-   26           | MUSIC
+   23 Expression: LogicalExpression
+   24           | ArithmeticalExpression
+   25           | MUSIC
 
-   27 ArithmeticalExpression: Termin
-   28                       | ArithmeticalExpression MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression MINUS_TOKEN ArithmeticalExpression
-   33                       | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+   26 ArithmeticalExpression: Termin
+   27                       | ArithmeticalExpression MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression MINUS_TOKEN ArithmeticalExpression
+   32                       | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
 
-   34 RelationalExpression: ArithmeticalExpression LT_TOKEN ArithmeticalExpression
-   35                     | ArithmeticalExpression GT_TOKEN ArithmeticalExpression
-   36                     | ArithmeticalExpression LE_TOKEN ArithmeticalExpression
-   37                     | ArithmeticalExpression GE_TOKEN ArithmeticalExpression
-   38                     | ArithmeticalExpression EQ_TOKEN ArithmeticalExpression
-   39                     | ArithmeticalExpression NE_TOKEN ArithmeticalExpression
-   40                     | OPEN_PARENTHESIS_TOKEN RelationalExpression CLOSE_PARENTHESIS_TOKEN
+   33 RelationalExpression: ArithmeticalExpression LT_TOKEN ArithmeticalExpression
+   34                     | ArithmeticalExpression GT_TOKEN ArithmeticalExpression
+   35                     | ArithmeticalExpression LE_TOKEN ArithmeticalExpression
+   36                     | ArithmeticalExpression GE_TOKEN ArithmeticalExpression
+   37                     | ArithmeticalExpression EQ_TOKEN ArithmeticalExpression
+   38                     | ArithmeticalExpression NE_TOKEN ArithmeticalExpression
+   39                     | OPEN_PARENTHESIS_TOKEN RelationalExpression CLOSE_PARENTHESIS_TOKEN
 
-   41 LogicalExpression: BooleanValue
-   42                  | RelationalExpression
-   43                  | LogicalExpression AND_TOKEN LogicalExpression
-   44                  | LogicalExpression OR_TOKEN LogicalExpression
-   45                  | OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN
+   40 LogicalExpression: BooleanValue
+   41                  | RelationalExpression
+   42                  | LogicalExpression AND_TOKEN LogicalExpression
+   43                  | LogicalExpression OR_TOKEN LogicalExpression
+   44                  | OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN
 
-   46 BooleanValue: TRUE_TOKEN
-   47             | FALSE_TOKEN
+   45 BooleanValue: TRUE_TOKEN
+   46             | FALSE_TOKEN
 
-   48 Termin: NAME
-   49       | NUMBER
+   47 Termin: NAME
+   48       | NUMBER
 
-   50 Cases: CASE_TOKEN Expression COLON_TOKEN Block Cases
-   51      | DEFAULT_TOKEN COLON_TOKEN Block
+   49 Cases: CASE_TOKEN Expression COLON_TOKEN Block Cases
+   50      | DEFAULT_TOKEN COLON_TOKEN Block
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-NAME (258) 4 5 10 18 21 48
-MUSIC (259) 19 26
-NUMBER (260) 49
-TYPE (261) 1 4
-MUSIC_TYPE (262) 5
-TRUE_TOKEN (263) 46
-FALSE_TOKEN (264) 47
+NAME (258) 3 4 9 17 20 47
+MUSIC (259) 18 25
+NUMBER (260) 48
+TYPE (261) 1 3
+MUSIC_TYPE (262) 4
+TRUE_TOKEN (263) 45
+FALSE_TOKEN (264) 46
 VOID_TOKEN (265) 1
 MAIN_TOKEN (266) 1
-IF_TOKEN (267) 13 14
-ELSE_TOKEN (268) 14
-FOR_TOKEN (269) 12
-DO_TOKEN (270) 16
-WHILE_TOKEN (271) 11 16
-SWITCH_TOKEN (272) 15
-CASE_TOKEN (273) 50
-DEFAULT_TOKEN (274) 51
-BREAK_TOKEN (275) 17
-PLUS_TOKEN (276) 31
-MINUS_TOKEN (277) 32
-MULT_TOKEN (278) 28
-DIV_TOKEN (279) 29
-MOD_TOKEN (280) 30
-AND_TOKEN (281) 43
-OR_TOKEN (282) 44
+IF_TOKEN (267) 12 13
+ELSE_TOKEN (268) 13
+FOR_TOKEN (269) 11
+DO_TOKEN (270) 15
+WHILE_TOKEN (271) 10 15
+SWITCH_TOKEN (272) 14
+CASE_TOKEN (273) 49
+DEFAULT_TOKEN (274) 50
+BREAK_TOKEN (275) 16
+PLUS_TOKEN (276) 30
+MINUS_TOKEN (277) 31
+MULT_TOKEN (278) 27
+DIV_TOKEN (279) 28
+MOD_TOKEN (280) 29
+AND_TOKEN (281) 42
+OR_TOKEN (282) 43
 NOT_TOKEN (283)
-NE_TOKEN (284) 39
-ASSIGN_TOKEN (285) 9 10 21
-GT_TOKEN (286) 35
-LT_TOKEN (287) 34
-GE_TOKEN (288) 37
-LE_TOKEN (289) 36
-EQ_TOKEN (290) 38
-OPEN_PARENTHESIS_TOKEN (291) 1 11 12 13 14 15 16 18 19 33 40 45
-CLOSE_PARENTHESIS_TOKEN (292) 1 11 12 13 14 15 16 18 19 33 40 45
-OPEN_BRACKET_TOKEN (293) 6 7 15
-CLOSE_BRACKET_TOKEN (294) 6 7 15
-OPEN_SQR_BRACKET_TOKEN (295)
-CLOSE_SQR_BRACKET_TOKEN (296)
-COLON_TOKEN (297) 50 51
-SEMICOLON_TOKEN (298) 2 3 9 10 12 16 17 18 19
-COMMA_TOKEN (299) 22
-UNDERSCORE_TOKEN (300)
-WRITE_TOKEN (301) 18 19
+NE_TOKEN (284) 38
+ASSIGN_TOKEN (285) 8 9 20
+GT_TOKEN (286) 34
+LT_TOKEN (287) 33
+GE_TOKEN (288) 36
+LE_TOKEN (289) 35
+EQ_TOKEN (290) 37
+OPEN_PARENTHESIS_TOKEN (291) 1 10 11 12 13 14 15 17 18 32 39 44
+CLOSE_PARENTHESIS_TOKEN (292) 1 10 11 12 13 14 15 17 18 32 39 44
+OPEN_BRACKET_TOKEN (293) 5 6 14
+CLOSE_BRACKET_TOKEN (294) 5 6 14
+COLON_TOKEN (295) 49 50
+SEMICOLON_TOKEN (296) 2 8 9 11 15 16 17 18
+COMMA_TOKEN (297) 21
+WRITE_TOKEN (298) 17 18
 
 
 Nonterminals, with rules where they appear
 
-$accept (47)
+$accept (44)
     on left: 0
-Main (48)
+Main (45)
     on left: 1, on right: 0
-Variables (49)
-    on left: 2 3, on right: 2 8
-Variable (50)
-    on left: 4 5, on right: 2 3 9
-Block (51)
-    on left: 6, on right: 11 12 13 14 16 50 51
-MainBlock (52)
-    on left: 7, on right: 1
-Content (53)
-    on left: 8 9 10 11 12 13 14 15 16 17 18 19 20, on right: 6 7 8
-    9 10 11 12 13 14 15 16 17 18 19
-ForExpression (54)
-    on left: 21 22 23, on right: 12 22
-Expression (55)
-    on left: 24 25 26, on right: 9 10 15 21 50
-ArithmeticalExpression (56)
-    on left: 27 28 29 30 31 32 33, on right: 25 28 29 30 31 32 33 34
-    35 36 37 38 39
-RelationalExpression (57)
-    on left: 34 35 36 37 38 39 40, on right: 40 42
-LogicalExpression (58)
-    on left: 41 42 43 44 45, on right: 11 12 13 14 16 24 43 44 45
-BooleanValue (59)
-    on left: 46 47, on right: 41
-Termin (60)
-    on left: 48 49, on right: 27
-Cases (61)
-    on left: 50 51, on right: 15 50
+Variables (46)
+    on left: 2, on right: 7
+Variable (47)
+    on left: 3 4, on right: 2 8
+Block (48)
+    on left: 5, on right: 10 11 12 13 15 49 50
+MainBlock (49)
+    on left: 6, on right: 1
+Content (50)
+    on left: 7 8 9 10 11 12 13 14 15 16 17 18 19, on right: 5 6 7 8
+    9 10 11 12 13 14 15 16 17 18
+ForExpression (51)
+    on left: 20 21 22, on right: 11 21
+Expression (52)
+    on left: 23 24 25, on right: 8 9 14 20 49
+ArithmeticalExpression (53)
+    on left: 26 27 28 29 30 31 32, on right: 24 27 28 29 30 31 32 33
+    34 35 36 37 38
+RelationalExpression (54)
+    on left: 33 34 35 36 37 38 39, on right: 39 41
+LogicalExpression (55)
+    on left: 40 41 42 43 44, on right: 10 11 12 13 15 23 42 43 44
+BooleanValue (56)
+    on left: 45 46, on right: 40
+Termin (57)
+    on left: 47 48, on right: 26
+Cases (58)
+    on left: 49 50, on right: 14 49
 
 
 state 0
@@ -236,7 +220,7 @@ state 7
 
 state 8
 
-    7 MainBlock: OPEN_BRACKET_TOKEN . Content CLOSE_BRACKET_TOKEN
+    6 MainBlock: OPEN_BRACKET_TOKEN . Content CLOSE_BRACKET_TOKEN
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -249,7 +233,7 @@ state 8
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
@@ -265,43 +249,43 @@ state 9
 
 state 10
 
-   10 Content: NAME . ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
+    9 Content: NAME . ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
 
     ASSIGN_TOKEN  shift, and go to state 23
 
 
 state 11
 
-    4 Variable: TYPE . NAME
+    3 Variable: TYPE . NAME
 
     NAME  shift, and go to state 24
 
 
 state 12
 
-    5 Variable: MUSIC_TYPE . NAME
+    4 Variable: MUSIC_TYPE . NAME
 
     NAME  shift, and go to state 25
 
 
 state 13
 
-   13 Content: IF_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   14        | IF_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
+   12 Content: IF_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   13        | IF_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
 
     OPEN_PARENTHESIS_TOKEN  shift, and go to state 26
 
 
 state 14
 
-   12 Content: FOR_TOKEN . OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   11 Content: FOR_TOKEN . OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
 
     OPEN_PARENTHESIS_TOKEN  shift, and go to state 27
 
 
 state 15
 
-   16 Content: DO_TOKEN . Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   15 Content: DO_TOKEN . Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
     OPEN_BRACKET_TOKEN  shift, and go to state 28
 
@@ -310,37 +294,36 @@ state 15
 
 state 16
 
-   11 Content: WHILE_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   10 Content: WHILE_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
 
     OPEN_PARENTHESIS_TOKEN  shift, and go to state 30
 
 
 state 17
 
-   15 Content: SWITCH_TOKEN . OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   14 Content: SWITCH_TOKEN . OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
 
     OPEN_PARENTHESIS_TOKEN  shift, and go to state 31
 
 
 state 18
 
-   17 Content: BREAK_TOKEN . SEMICOLON_TOKEN Content
+   16 Content: BREAK_TOKEN . SEMICOLON_TOKEN Content
 
     SEMICOLON_TOKEN  shift, and go to state 32
 
 
 state 19
 
-   18 Content: WRITE_TOKEN . OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-   19        | WRITE_TOKEN . OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   17 Content: WRITE_TOKEN . OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   18        | WRITE_TOKEN . OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
     OPEN_PARENTHESIS_TOKEN  shift, and go to state 33
 
 
 state 20
 
-    2 Variables: Variables . Variable SEMICOLON_TOKEN
-    8 Content: Variables . Content
+    7 Content: Variables . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -353,94 +336,94 @@ state 20
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
-    Variable   go to state 34
-    Content    go to state 35
+    Variable   go to state 21
+    Content    go to state 34
 
 
 state 21
 
-    3 Variables: Variable . SEMICOLON_TOKEN
-    9 Content: Variable . ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
+    2 Variables: Variable . SEMICOLON_TOKEN
+    8 Content: Variable . ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
 
-    ASSIGN_TOKEN     shift, and go to state 36
-    SEMICOLON_TOKEN  shift, and go to state 37
+    ASSIGN_TOKEN     shift, and go to state 35
+    SEMICOLON_TOKEN  shift, and go to state 36
 
 
 state 22
 
-    7 MainBlock: OPEN_BRACKET_TOKEN Content . CLOSE_BRACKET_TOKEN
+    6 MainBlock: OPEN_BRACKET_TOKEN Content . CLOSE_BRACKET_TOKEN
 
-    CLOSE_BRACKET_TOKEN  shift, and go to state 38
+    CLOSE_BRACKET_TOKEN  shift, and go to state 37
 
 
 state 23
 
-   10 Content: NAME ASSIGN_TOKEN . Expression SEMICOLON_TOKEN Content
+    9 Content: NAME ASSIGN_TOKEN . Expression SEMICOLON_TOKEN Content
 
-    NAME                    shift, and go to state 39
-    MUSIC                   shift, and go to state 40
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    NAME                    shift, and go to state 38
+    MUSIC                   shift, and go to state 39
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    Expression              go to state 45
-    ArithmeticalExpression  go to state 46
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 48
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    Expression              go to state 44
+    ArithmeticalExpression  go to state 45
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 47
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 24
 
-    4 Variable: TYPE NAME .
+    3 Variable: TYPE NAME .
 
-    $default  reduce using rule 4 (Variable)
+    $default  reduce using rule 3 (Variable)
 
 
 state 25
 
-    5 Variable: MUSIC_TYPE NAME .
+    4 Variable: MUSIC_TYPE NAME .
 
-    $default  reduce using rule 5 (Variable)
+    $default  reduce using rule 4 (Variable)
 
 
 state 26
 
-   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   14        | IF_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
+   12 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   13        | IF_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    ArithmeticalExpression  go to state 51
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 52
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    ArithmeticalExpression  go to state 50
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 51
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 27
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN . ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN . ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
 
-    NAME  shift, and go to state 53
+    NAME  shift, and go to state 52
 
-    $default  reduce using rule 23 (ForExpression)
+    $default  reduce using rule 22 (ForExpression)
 
-    ForExpression  go to state 54
+    ForExpression  go to state 53
 
 
 state 28
 
-    6 Block: OPEN_BRACKET_TOKEN . Content CLOSE_BRACKET_TOKEN
+    5 Block: OPEN_BRACKET_TOKEN . Content CLOSE_BRACKET_TOKEN
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -453,59 +436,59 @@ state 28
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 55
+    Content    go to state 54
 
 
 state 29
 
-   16 Content: DO_TOKEN Block . WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   15 Content: DO_TOKEN Block . WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
-    WHILE_TOKEN  shift, and go to state 56
+    WHILE_TOKEN  shift, and go to state 55
 
 
 state 30
 
-   11 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   10 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    ArithmeticalExpression  go to state 51
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 57
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    ArithmeticalExpression  go to state 50
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 56
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 31
 
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN . Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN . Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
 
-    NAME                    shift, and go to state 39
-    MUSIC                   shift, and go to state 40
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    NAME                    shift, and go to state 38
+    MUSIC                   shift, and go to state 39
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    Expression              go to state 58
-    ArithmeticalExpression  go to state 46
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 48
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    Expression              go to state 57
+    ArithmeticalExpression  go to state 45
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 47
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 32
 
-   17 Content: BREAK_TOKEN SEMICOLON_TOKEN . Content
+   16 Content: BREAK_TOKEN SEMICOLON_TOKEN . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -518,694 +501,654 @@ state 32
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 59
+    Content    go to state 58
 
 
 state 33
 
-   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN . NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-   19        | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN . MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   17 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN . NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   18        | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN . MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
-    NAME   shift, and go to state 60
-    MUSIC  shift, and go to state 61
+    NAME   shift, and go to state 59
+    MUSIC  shift, and go to state 60
 
 
 state 34
 
-    2 Variables: Variables Variable . SEMICOLON_TOKEN
-    3          | Variable . SEMICOLON_TOKEN
-    9 Content: Variable . ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content
+    7 Content: Variables Content .
 
-    ASSIGN_TOKEN     shift, and go to state 36
-    SEMICOLON_TOKEN  shift, and go to state 62
+    $default  reduce using rule 7 (Content)
 
 
 state 35
 
-    8 Content: Variables Content .
+    8 Content: Variable ASSIGN_TOKEN . Expression SEMICOLON_TOKEN Content
 
-    $default  reduce using rule 8 (Content)
+    NAME                    shift, and go to state 38
+    MUSIC                   shift, and go to state 39
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
+
+    Expression              go to state 61
+    ArithmeticalExpression  go to state 45
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 47
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 36
 
-    9 Content: Variable ASSIGN_TOKEN . Expression SEMICOLON_TOKEN Content
+    2 Variables: Variable SEMICOLON_TOKEN .
 
-    NAME                    shift, and go to state 39
-    MUSIC                   shift, and go to state 40
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
-
-    Expression              go to state 63
-    ArithmeticalExpression  go to state 46
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 48
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    $default  reduce using rule 2 (Variables)
 
 
 state 37
 
-    3 Variables: Variable SEMICOLON_TOKEN .
+    6 MainBlock: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN .
 
-    $default  reduce using rule 3 (Variables)
+    $default  reduce using rule 6 (MainBlock)
 
 
 state 38
 
-    7 MainBlock: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN .
+   47 Termin: NAME .
 
-    $default  reduce using rule 7 (MainBlock)
+    $default  reduce using rule 47 (Termin)
 
 
 state 39
 
-   48 Termin: NAME .
+   25 Expression: MUSIC .
 
-    $default  reduce using rule 48 (Termin)
+    $default  reduce using rule 25 (Expression)
 
 
 state 40
 
-   26 Expression: MUSIC .
+   48 Termin: NUMBER .
 
-    $default  reduce using rule 26 (Expression)
+    $default  reduce using rule 48 (Termin)
 
 
 state 41
 
-   49 Termin: NUMBER .
+   45 BooleanValue: TRUE_TOKEN .
 
-    $default  reduce using rule 49 (Termin)
+    $default  reduce using rule 45 (BooleanValue)
 
 
 state 42
 
-   46 BooleanValue: TRUE_TOKEN .
+   46 BooleanValue: FALSE_TOKEN .
 
     $default  reduce using rule 46 (BooleanValue)
 
 
 state 43
 
-   47 BooleanValue: FALSE_TOKEN .
+   32 ArithmeticalExpression: OPEN_PARENTHESIS_TOKEN . ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+   39 RelationalExpression: OPEN_PARENTHESIS_TOKEN . RelationalExpression CLOSE_PARENTHESIS_TOKEN
+   44 LogicalExpression: OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN
 
-    $default  reduce using rule 47 (BooleanValue)
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
+
+    ArithmeticalExpression  go to state 62
+    RelationalExpression    go to state 63
+    LogicalExpression       go to state 64
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 44
 
-   33 ArithmeticalExpression: OPEN_PARENTHESIS_TOKEN . ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
-   40 RelationalExpression: OPEN_PARENTHESIS_TOKEN . RelationalExpression CLOSE_PARENTHESIS_TOKEN
-   45 LogicalExpression: OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN
+    9 Content: NAME ASSIGN_TOKEN Expression . SEMICOLON_TOKEN Content
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
-
-    ArithmeticalExpression  go to state 64
-    RelationalExpression    go to state 65
-    LogicalExpression       go to state 66
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    SEMICOLON_TOKEN  shift, and go to state 65
 
 
 state 45
 
-   10 Content: NAME ASSIGN_TOKEN Expression . SEMICOLON_TOKEN Content
+   24 Expression: ArithmeticalExpression .
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   33 RelationalExpression: ArithmeticalExpression . LT_TOKEN ArithmeticalExpression
+   34                     | ArithmeticalExpression . GT_TOKEN ArithmeticalExpression
+   35                     | ArithmeticalExpression . LE_TOKEN ArithmeticalExpression
+   36                     | ArithmeticalExpression . GE_TOKEN ArithmeticalExpression
+   37                     | ArithmeticalExpression . EQ_TOKEN ArithmeticalExpression
+   38                     | ArithmeticalExpression . NE_TOKEN ArithmeticalExpression
 
-    SEMICOLON_TOKEN  shift, and go to state 67
-
-
-state 46
-
-   25 Expression: ArithmeticalExpression .
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   34 RelationalExpression: ArithmeticalExpression . LT_TOKEN ArithmeticalExpression
-   35                     | ArithmeticalExpression . GT_TOKEN ArithmeticalExpression
-   36                     | ArithmeticalExpression . LE_TOKEN ArithmeticalExpression
-   37                     | ArithmeticalExpression . GE_TOKEN ArithmeticalExpression
-   38                     | ArithmeticalExpression . EQ_TOKEN ArithmeticalExpression
-   39                     | ArithmeticalExpression . NE_TOKEN ArithmeticalExpression
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-    NE_TOKEN     shift, and go to state 73
-    GT_TOKEN     shift, and go to state 74
-    LT_TOKEN     shift, and go to state 75
-    GE_TOKEN     shift, and go to state 76
-    LE_TOKEN     shift, and go to state 77
-    EQ_TOKEN     shift, and go to state 78
-
-    $default  reduce using rule 25 (Expression)
-
-
-state 47
-
-   42 LogicalExpression: RelationalExpression .
-
-    $default  reduce using rule 42 (LogicalExpression)
-
-
-state 48
-
-   24 Expression: LogicalExpression .
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
-
-    AND_TOKEN  shift, and go to state 79
-    OR_TOKEN   shift, and go to state 80
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
+    NE_TOKEN     shift, and go to state 71
+    GT_TOKEN     shift, and go to state 72
+    LT_TOKEN     shift, and go to state 73
+    GE_TOKEN     shift, and go to state 74
+    LE_TOKEN     shift, and go to state 75
+    EQ_TOKEN     shift, and go to state 76
 
     $default  reduce using rule 24 (Expression)
 
 
-state 49
+state 46
 
-   41 LogicalExpression: BooleanValue .
+   41 LogicalExpression: RelationalExpression .
 
     $default  reduce using rule 41 (LogicalExpression)
 
 
+state 47
+
+   23 Expression: LogicalExpression .
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
+
+    AND_TOKEN  shift, and go to state 77
+    OR_TOKEN   shift, and go to state 78
+
+    $default  reduce using rule 23 (Expression)
+
+
+state 48
+
+   40 LogicalExpression: BooleanValue .
+
+    $default  reduce using rule 40 (LogicalExpression)
+
+
+state 49
+
+   26 ArithmeticalExpression: Termin .
+
+    $default  reduce using rule 26 (ArithmeticalExpression)
+
+
 state 50
 
-   27 ArithmeticalExpression: Termin .
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   33 RelationalExpression: ArithmeticalExpression . LT_TOKEN ArithmeticalExpression
+   34                     | ArithmeticalExpression . GT_TOKEN ArithmeticalExpression
+   35                     | ArithmeticalExpression . LE_TOKEN ArithmeticalExpression
+   36                     | ArithmeticalExpression . GE_TOKEN ArithmeticalExpression
+   37                     | ArithmeticalExpression . EQ_TOKEN ArithmeticalExpression
+   38                     | ArithmeticalExpression . NE_TOKEN ArithmeticalExpression
 
-    $default  reduce using rule 27 (ArithmeticalExpression)
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
+    NE_TOKEN     shift, and go to state 71
+    GT_TOKEN     shift, and go to state 72
+    LT_TOKEN     shift, and go to state 73
+    GE_TOKEN     shift, and go to state 74
+    LE_TOKEN     shift, and go to state 75
+    EQ_TOKEN     shift, and go to state 76
 
 
 state 51
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   34 RelationalExpression: ArithmeticalExpression . LT_TOKEN ArithmeticalExpression
-   35                     | ArithmeticalExpression . GT_TOKEN ArithmeticalExpression
-   36                     | ArithmeticalExpression . LE_TOKEN ArithmeticalExpression
-   37                     | ArithmeticalExpression . GE_TOKEN ArithmeticalExpression
-   38                     | ArithmeticalExpression . EQ_TOKEN ArithmeticalExpression
-   39                     | ArithmeticalExpression . NE_TOKEN ArithmeticalExpression
+   12 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN Block Content
+   13        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
 
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-    NE_TOKEN     shift, and go to state 73
-    GT_TOKEN     shift, and go to state 74
-    LT_TOKEN     shift, and go to state 75
-    GE_TOKEN     shift, and go to state 76
-    LE_TOKEN     shift, and go to state 77
-    EQ_TOKEN     shift, and go to state 78
+    AND_TOKEN                shift, and go to state 77
+    OR_TOKEN                 shift, and go to state 78
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 79
 
 
 state 52
 
-   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN Block Content
-   14        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
+   20 ForExpression: NAME . ASSIGN_TOKEN Expression
 
-    AND_TOKEN                shift, and go to state 79
-    OR_TOKEN                 shift, and go to state 80
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 81
+    ASSIGN_TOKEN  shift, and go to state 80
 
 
 state 53
 
-   21 ForExpression: NAME . ASSIGN_TOKEN Expression
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression . SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   21 ForExpression: ForExpression . COMMA_TOKEN ForExpression
 
-    ASSIGN_TOKEN  shift, and go to state 82
+    SEMICOLON_TOKEN  shift, and go to state 81
+    COMMA_TOKEN      shift, and go to state 82
 
 
 state 54
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression . SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   22 ForExpression: ForExpression . COMMA_TOKEN ForExpression
+    5 Block: OPEN_BRACKET_TOKEN Content . CLOSE_BRACKET_TOKEN
 
-    SEMICOLON_TOKEN  shift, and go to state 83
-    COMMA_TOKEN      shift, and go to state 84
+    CLOSE_BRACKET_TOKEN  shift, and go to state 83
 
 
 state 55
 
-    6 Block: OPEN_BRACKET_TOKEN Content . CLOSE_BRACKET_TOKEN
+   15 Content: DO_TOKEN Block WHILE_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
-    CLOSE_BRACKET_TOKEN  shift, and go to state 85
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 84
 
 
 state 56
 
-   16 Content: DO_TOKEN Block WHILE_TOKEN . OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   10 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN Block Content
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
 
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 86
+    AND_TOKEN                shift, and go to state 77
+    OR_TOKEN                 shift, and go to state 78
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 85
 
 
 state 57
 
-   11 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN Block Content
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression . CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
 
-    AND_TOKEN                shift, and go to state 79
-    OR_TOKEN                 shift, and go to state 80
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 87
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 86
 
 
 state 58
 
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression . CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   16 Content: BREAK_TOKEN SEMICOLON_TOKEN Content .
 
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 88
+    $default  reduce using rule 16 (Content)
 
 
 state 59
 
-   17 Content: BREAK_TOKEN SEMICOLON_TOKEN Content .
+   17 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME . CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
-    $default  reduce using rule 17 (Content)
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 87
 
 
 state 60
 
-   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME . CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC . CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 89
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 88
 
 
 state 61
 
-   19 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC . CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+    8 Content: Variable ASSIGN_TOKEN Expression . SEMICOLON_TOKEN Content
 
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 90
+    SEMICOLON_TOKEN  shift, and go to state 89
 
 
 state 62
 
-    2 Variables: Variables Variable SEMICOLON_TOKEN .
-    3          | Variable SEMICOLON_TOKEN .
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   32                       | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression . CLOSE_PARENTHESIS_TOKEN
+   33 RelationalExpression: ArithmeticalExpression . LT_TOKEN ArithmeticalExpression
+   34                     | ArithmeticalExpression . GT_TOKEN ArithmeticalExpression
+   35                     | ArithmeticalExpression . LE_TOKEN ArithmeticalExpression
+   36                     | ArithmeticalExpression . GE_TOKEN ArithmeticalExpression
+   37                     | ArithmeticalExpression . EQ_TOKEN ArithmeticalExpression
+   38                     | ArithmeticalExpression . NE_TOKEN ArithmeticalExpression
 
-    NAME                 reduce using rule 2 (Variables)
-    NAME                 [reduce using rule 3 (Variables)]
-    TYPE                 reduce using rule 2 (Variables)
-    TYPE                 [reduce using rule 3 (Variables)]
-    MUSIC_TYPE           reduce using rule 2 (Variables)
-    MUSIC_TYPE           [reduce using rule 3 (Variables)]
-    IF_TOKEN             reduce using rule 2 (Variables)
-    IF_TOKEN             [reduce using rule 3 (Variables)]
-    FOR_TOKEN            reduce using rule 2 (Variables)
-    FOR_TOKEN            [reduce using rule 3 (Variables)]
-    DO_TOKEN             reduce using rule 2 (Variables)
-    DO_TOKEN             [reduce using rule 3 (Variables)]
-    WHILE_TOKEN          reduce using rule 2 (Variables)
-    WHILE_TOKEN          [reduce using rule 3 (Variables)]
-    SWITCH_TOKEN         reduce using rule 2 (Variables)
-    SWITCH_TOKEN         [reduce using rule 3 (Variables)]
-    BREAK_TOKEN          reduce using rule 2 (Variables)
-    BREAK_TOKEN          [reduce using rule 3 (Variables)]
-    CLOSE_BRACKET_TOKEN  reduce using rule 2 (Variables)
-    CLOSE_BRACKET_TOKEN  [reduce using rule 3 (Variables)]
-    WRITE_TOKEN          reduce using rule 2 (Variables)
-    WRITE_TOKEN          [reduce using rule 3 (Variables)]
-    $default             reduce using rule 2 (Variables)
+    PLUS_TOKEN               shift, and go to state 66
+    MINUS_TOKEN              shift, and go to state 67
+    MULT_TOKEN               shift, and go to state 68
+    DIV_TOKEN                shift, and go to state 69
+    MOD_TOKEN                shift, and go to state 70
+    NE_TOKEN                 shift, and go to state 71
+    GT_TOKEN                 shift, and go to state 72
+    LT_TOKEN                 shift, and go to state 73
+    GE_TOKEN                 shift, and go to state 74
+    LE_TOKEN                 shift, and go to state 75
+    EQ_TOKEN                 shift, and go to state 76
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 90
 
 
 state 63
 
-    9 Content: Variable ASSIGN_TOKEN Expression . SEMICOLON_TOKEN Content
+   39 RelationalExpression: OPEN_PARENTHESIS_TOKEN RelationalExpression . CLOSE_PARENTHESIS_TOKEN
+   41 LogicalExpression: RelationalExpression .
 
-    SEMICOLON_TOKEN  shift, and go to state 91
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 91
+
+    CLOSE_PARENTHESIS_TOKEN  [reduce using rule 41 (LogicalExpression)]
+    $default                 reduce using rule 41 (LogicalExpression)
 
 
 state 64
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   33                       | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression . CLOSE_PARENTHESIS_TOKEN
-   34 RelationalExpression: ArithmeticalExpression . LT_TOKEN ArithmeticalExpression
-   35                     | ArithmeticalExpression . GT_TOKEN ArithmeticalExpression
-   36                     | ArithmeticalExpression . LE_TOKEN ArithmeticalExpression
-   37                     | ArithmeticalExpression . GE_TOKEN ArithmeticalExpression
-   38                     | ArithmeticalExpression . EQ_TOKEN ArithmeticalExpression
-   39                     | ArithmeticalExpression . NE_TOKEN ArithmeticalExpression
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
+   44                  | OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN
 
-    PLUS_TOKEN               shift, and go to state 68
-    MINUS_TOKEN              shift, and go to state 69
-    MULT_TOKEN               shift, and go to state 70
-    DIV_TOKEN                shift, and go to state 71
-    MOD_TOKEN                shift, and go to state 72
-    NE_TOKEN                 shift, and go to state 73
-    GT_TOKEN                 shift, and go to state 74
-    LT_TOKEN                 shift, and go to state 75
-    GE_TOKEN                 shift, and go to state 76
-    LE_TOKEN                 shift, and go to state 77
-    EQ_TOKEN                 shift, and go to state 78
+    AND_TOKEN                shift, and go to state 77
+    OR_TOKEN                 shift, and go to state 78
     CLOSE_PARENTHESIS_TOKEN  shift, and go to state 92
 
 
 state 65
 
-   40 RelationalExpression: OPEN_PARENTHESIS_TOKEN RelationalExpression . CLOSE_PARENTHESIS_TOKEN
-   42 LogicalExpression: RelationalExpression .
+    9 Content: NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN . Content
 
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 93
+    NAME          shift, and go to state 10
+    TYPE          shift, and go to state 11
+    MUSIC_TYPE    shift, and go to state 12
+    IF_TOKEN      shift, and go to state 13
+    FOR_TOKEN     shift, and go to state 14
+    DO_TOKEN      shift, and go to state 15
+    WHILE_TOKEN   shift, and go to state 16
+    SWITCH_TOKEN  shift, and go to state 17
+    BREAK_TOKEN   shift, and go to state 18
+    WRITE_TOKEN   shift, and go to state 19
 
-    CLOSE_PARENTHESIS_TOKEN  [reduce using rule 42 (LogicalExpression)]
-    $default                 reduce using rule 42 (LogicalExpression)
+    $default  reduce using rule 19 (Content)
+
+    Variables  go to state 20
+    Variable   go to state 21
+    Content    go to state 93
 
 
 state 66
 
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
-   45                  | OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN
+   30 ArithmeticalExpression: ArithmeticalExpression PLUS_TOKEN . ArithmeticalExpression
 
-    AND_TOKEN                shift, and go to state 79
-    OR_TOKEN                 shift, and go to state 80
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 94
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
+
+    ArithmeticalExpression  go to state 95
+    Termin                  go to state 49
 
 
 state 67
 
-   10 Content: NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN . Content
+   31 ArithmeticalExpression: ArithmeticalExpression MINUS_TOKEN . ArithmeticalExpression
 
-    NAME          shift, and go to state 10
-    TYPE          shift, and go to state 11
-    MUSIC_TYPE    shift, and go to state 12
-    IF_TOKEN      shift, and go to state 13
-    FOR_TOKEN     shift, and go to state 14
-    DO_TOKEN      shift, and go to state 15
-    WHILE_TOKEN   shift, and go to state 16
-    SWITCH_TOKEN  shift, and go to state 17
-    BREAK_TOKEN   shift, and go to state 18
-    WRITE_TOKEN   shift, and go to state 19
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
-    $default  reduce using rule 20 (Content)
-
-    Variables  go to state 20
-    Variable   go to state 21
-    Content    go to state 95
+    ArithmeticalExpression  go to state 96
+    Termin                  go to state 49
 
 
 state 68
 
-   31 ArithmeticalExpression: ArithmeticalExpression PLUS_TOKEN . ArithmeticalExpression
+   27 ArithmeticalExpression: ArithmeticalExpression MULT_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 97
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 69
 
-   32 ArithmeticalExpression: ArithmeticalExpression MINUS_TOKEN . ArithmeticalExpression
+   28 ArithmeticalExpression: ArithmeticalExpression DIV_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 98
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 70
 
-   28 ArithmeticalExpression: ArithmeticalExpression MULT_TOKEN . ArithmeticalExpression
+   29 ArithmeticalExpression: ArithmeticalExpression MOD_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 99
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 71
 
-   29 ArithmeticalExpression: ArithmeticalExpression DIV_TOKEN . ArithmeticalExpression
+   38 RelationalExpression: ArithmeticalExpression NE_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 100
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 72
 
-   30 ArithmeticalExpression: ArithmeticalExpression MOD_TOKEN . ArithmeticalExpression
+   34 RelationalExpression: ArithmeticalExpression GT_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 101
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 73
 
-   39 RelationalExpression: ArithmeticalExpression NE_TOKEN . ArithmeticalExpression
+   33 RelationalExpression: ArithmeticalExpression LT_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 102
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 74
 
-   35 RelationalExpression: ArithmeticalExpression GT_TOKEN . ArithmeticalExpression
+   36 RelationalExpression: ArithmeticalExpression GE_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 103
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 75
 
-   34 RelationalExpression: ArithmeticalExpression LT_TOKEN . ArithmeticalExpression
+   35 RelationalExpression: ArithmeticalExpression LE_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 104
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 76
 
-   37 RelationalExpression: ArithmeticalExpression GE_TOKEN . ArithmeticalExpression
+   37 RelationalExpression: ArithmeticalExpression EQ_TOKEN . ArithmeticalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
 
     ArithmeticalExpression  go to state 105
-    Termin                  go to state 50
+    Termin                  go to state 49
 
 
 state 77
 
-   36 RelationalExpression: ArithmeticalExpression LE_TOKEN . ArithmeticalExpression
+   42 LogicalExpression: LogicalExpression AND_TOKEN . LogicalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    ArithmeticalExpression  go to state 106
-    Termin                  go to state 50
+    ArithmeticalExpression  go to state 50
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 106
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 78
 
-   38 RelationalExpression: ArithmeticalExpression EQ_TOKEN . ArithmeticalExpression
+   43 LogicalExpression: LogicalExpression OR_TOKEN . LogicalExpression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    ArithmeticalExpression  go to state 107
-    Termin                  go to state 50
+    ArithmeticalExpression  go to state 50
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 107
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 79
 
-   43 LogicalExpression: LogicalExpression AND_TOKEN . LogicalExpression
+   12 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . Block Content
+   13        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . Block ELSE_TOKEN Block Content
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    OPEN_BRACKET_TOKEN  shift, and go to state 28
 
-    ArithmeticalExpression  go to state 51
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 108
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    Block  go to state 108
 
 
 state 80
 
-   44 LogicalExpression: LogicalExpression OR_TOKEN . LogicalExpression
+   20 ForExpression: NAME ASSIGN_TOKEN . Expression
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    NAME                    shift, and go to state 38
+    MUSIC                   shift, and go to state 39
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    ArithmeticalExpression  go to state 51
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 109
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    Expression              go to state 109
+    ArithmeticalExpression  go to state 45
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 47
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 81
 
-   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . Block Content
-   14        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . Block ELSE_TOKEN Block Content
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN . LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
 
-    OPEN_BRACKET_TOKEN  shift, and go to state 28
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    Block  go to state 110
+    ArithmeticalExpression  go to state 50
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 110
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 82
 
-   21 ForExpression: NAME ASSIGN_TOKEN . Expression
+   21 ForExpression: ForExpression COMMA_TOKEN . ForExpression
 
-    NAME                    shift, and go to state 39
-    MUSIC                   shift, and go to state 40
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
+    NAME  shift, and go to state 52
 
-    Expression              go to state 111
-    ArithmeticalExpression  go to state 46
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 48
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    $default  reduce using rule 22 (ForExpression)
+
+    ForExpression  go to state 111
 
 
 state 83
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN . LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+    5 Block: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN .
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
-
-    ArithmeticalExpression  go to state 51
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 112
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    $default  reduce using rule 5 (Block)
 
 
 state 84
 
-   22 ForExpression: ForExpression COMMA_TOKEN . ForExpression
+   15 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
 
-    NAME  shift, and go to state 53
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
 
-    $default  reduce using rule 23 (ForExpression)
-
-    ForExpression  go to state 113
+    ArithmeticalExpression  go to state 50
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 112
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 85
 
-    6 Block: OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN .
+   10 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . Block Content
 
-    $default  reduce using rule 6 (Block)
+    OPEN_BRACKET_TOKEN  shift, and go to state 28
+
+    Block  go to state 113
 
 
 state 86
 
-   16 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN . LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN . OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
 
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
-
-    ArithmeticalExpression  go to state 51
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 114
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    OPEN_BRACKET_TOKEN  shift, and go to state 114
 
 
 state 87
 
-   11 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . Block Content
+   17 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN . SEMICOLON_TOKEN Content
 
-    OPEN_BRACKET_TOKEN  shift, and go to state 28
-
-    Block  go to state 115
+    SEMICOLON_TOKEN  shift, and go to state 115
 
 
 state 88
 
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN . OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN . SEMICOLON_TOKEN Content
 
-    OPEN_BRACKET_TOKEN  shift, and go to state 116
+    SEMICOLON_TOKEN  shift, and go to state 116
 
 
 state 89
 
-   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN . SEMICOLON_TOKEN Content
-
-    SEMICOLON_TOKEN  shift, and go to state 117
-
-
-state 90
-
-   19 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN . SEMICOLON_TOKEN Content
-
-    SEMICOLON_TOKEN  shift, and go to state 118
-
-
-state 91
-
-    9 Content: Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN . Content
+    8 Content: Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -1218,314 +1161,257 @@ state 91
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 119
+    Content    go to state 117
 
 
-state 92
+state 90
 
-   33 ArithmeticalExpression: OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN .
+   32 ArithmeticalExpression: OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN .
 
-    $default  reduce using rule 33 (ArithmeticalExpression)
-
-
-state 93
-
-   40 RelationalExpression: OPEN_PARENTHESIS_TOKEN RelationalExpression CLOSE_PARENTHESIS_TOKEN .
-
-    $default  reduce using rule 40 (RelationalExpression)
+    $default  reduce using rule 32 (ArithmeticalExpression)
 
 
-state 94
+state 91
 
-   45 LogicalExpression: OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN .
-
-    $default  reduce using rule 45 (LogicalExpression)
-
-
-state 95
-
-   10 Content: NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content .
-
-    $default  reduce using rule 10 (Content)
-
-
-state 96
-
-   33 ArithmeticalExpression: OPEN_PARENTHESIS_TOKEN . ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
-
-    NAME                    shift, and go to state 39
-    NUMBER                  shift, and go to state 41
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 96
-
-    ArithmeticalExpression  go to state 120
-    Termin                  go to state 50
-
-
-state 97
-
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression PLUS_TOKEN ArithmeticalExpression .
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    PLUS_TOKEN   [reduce using rule 31 (ArithmeticalExpression)]
-    MINUS_TOKEN  [reduce using rule 31 (ArithmeticalExpression)]
-    MULT_TOKEN   [reduce using rule 31 (ArithmeticalExpression)]
-    DIV_TOKEN    [reduce using rule 31 (ArithmeticalExpression)]
-    MOD_TOKEN    [reduce using rule 31 (ArithmeticalExpression)]
-    $default     reduce using rule 31 (ArithmeticalExpression)
-
-
-state 98
-
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression MINUS_TOKEN ArithmeticalExpression .
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    PLUS_TOKEN   [reduce using rule 32 (ArithmeticalExpression)]
-    MINUS_TOKEN  [reduce using rule 32 (ArithmeticalExpression)]
-    MULT_TOKEN   [reduce using rule 32 (ArithmeticalExpression)]
-    DIV_TOKEN    [reduce using rule 32 (ArithmeticalExpression)]
-    MOD_TOKEN    [reduce using rule 32 (ArithmeticalExpression)]
-    $default     reduce using rule 32 (ArithmeticalExpression)
-
-
-state 99
-
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   28                       | ArithmeticalExpression MULT_TOKEN ArithmeticalExpression .
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    PLUS_TOKEN   [reduce using rule 28 (ArithmeticalExpression)]
-    MINUS_TOKEN  [reduce using rule 28 (ArithmeticalExpression)]
-    MULT_TOKEN   [reduce using rule 28 (ArithmeticalExpression)]
-    DIV_TOKEN    [reduce using rule 28 (ArithmeticalExpression)]
-    MOD_TOKEN    [reduce using rule 28 (ArithmeticalExpression)]
-    $default     reduce using rule 28 (ArithmeticalExpression)
-
-
-state 100
-
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression DIV_TOKEN ArithmeticalExpression .
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    PLUS_TOKEN   [reduce using rule 29 (ArithmeticalExpression)]
-    MINUS_TOKEN  [reduce using rule 29 (ArithmeticalExpression)]
-    MULT_TOKEN   [reduce using rule 29 (ArithmeticalExpression)]
-    DIV_TOKEN    [reduce using rule 29 (ArithmeticalExpression)]
-    MOD_TOKEN    [reduce using rule 29 (ArithmeticalExpression)]
-    $default     reduce using rule 29 (ArithmeticalExpression)
-
-
-state 101
-
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression MOD_TOKEN ArithmeticalExpression .
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    PLUS_TOKEN   [reduce using rule 30 (ArithmeticalExpression)]
-    MINUS_TOKEN  [reduce using rule 30 (ArithmeticalExpression)]
-    MULT_TOKEN   [reduce using rule 30 (ArithmeticalExpression)]
-    DIV_TOKEN    [reduce using rule 30 (ArithmeticalExpression)]
-    MOD_TOKEN    [reduce using rule 30 (ArithmeticalExpression)]
-    $default     reduce using rule 30 (ArithmeticalExpression)
-
-
-state 102
-
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   39 RelationalExpression: ArithmeticalExpression NE_TOKEN ArithmeticalExpression .
-
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
+   39 RelationalExpression: OPEN_PARENTHESIS_TOKEN RelationalExpression CLOSE_PARENTHESIS_TOKEN .
 
     $default  reduce using rule 39 (RelationalExpression)
 
 
-state 103
+state 92
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   35 RelationalExpression: ArithmeticalExpression GT_TOKEN ArithmeticalExpression .
+   44 LogicalExpression: OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN .
 
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    $default  reduce using rule 35 (RelationalExpression)
+    $default  reduce using rule 44 (LogicalExpression)
 
 
-state 104
+state 93
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   34 RelationalExpression: ArithmeticalExpression LT_TOKEN ArithmeticalExpression .
+    9 Content: NAME ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content .
 
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
+    $default  reduce using rule 9 (Content)
+
+
+state 94
+
+   32 ArithmeticalExpression: OPEN_PARENTHESIS_TOKEN . ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+
+    NAME                    shift, and go to state 38
+    NUMBER                  shift, and go to state 40
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 94
+
+    ArithmeticalExpression  go to state 118
+    Termin                  go to state 49
+
+
+state 95
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression PLUS_TOKEN ArithmeticalExpression .
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+
+    MULT_TOKEN  shift, and go to state 68
+    DIV_TOKEN   shift, and go to state 69
+    MOD_TOKEN   shift, and go to state 70
+
+    $default  reduce using rule 30 (ArithmeticalExpression)
+
+
+state 96
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression MINUS_TOKEN ArithmeticalExpression .
+
+    MULT_TOKEN  shift, and go to state 68
+    DIV_TOKEN   shift, and go to state 69
+    MOD_TOKEN   shift, and go to state 70
+
+    $default  reduce using rule 31 (ArithmeticalExpression)
+
+
+state 97
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   27                       | ArithmeticalExpression MULT_TOKEN ArithmeticalExpression .
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+
+    $default  reduce using rule 27 (ArithmeticalExpression)
+
+
+state 98
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression DIV_TOKEN ArithmeticalExpression .
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+
+    $default  reduce using rule 28 (ArithmeticalExpression)
+
+
+state 99
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression MOD_TOKEN ArithmeticalExpression .
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+
+    $default  reduce using rule 29 (ArithmeticalExpression)
+
+
+state 100
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   38 RelationalExpression: ArithmeticalExpression NE_TOKEN ArithmeticalExpression .
+
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
+
+    $default  reduce using rule 38 (RelationalExpression)
+
+
+state 101
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   34 RelationalExpression: ArithmeticalExpression GT_TOKEN ArithmeticalExpression .
+
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
 
     $default  reduce using rule 34 (RelationalExpression)
 
 
+state 102
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   33 RelationalExpression: ArithmeticalExpression LT_TOKEN ArithmeticalExpression .
+
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
+
+    $default  reduce using rule 33 (RelationalExpression)
+
+
+state 103
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   36 RelationalExpression: ArithmeticalExpression GE_TOKEN ArithmeticalExpression .
+
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
+
+    $default  reduce using rule 36 (RelationalExpression)
+
+
+state 104
+
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   35 RelationalExpression: ArithmeticalExpression LE_TOKEN ArithmeticalExpression .
+
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
+
+    $default  reduce using rule 35 (RelationalExpression)
+
+
 state 105
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   37 RelationalExpression: ArithmeticalExpression GE_TOKEN ArithmeticalExpression .
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   37 RelationalExpression: ArithmeticalExpression EQ_TOKEN ArithmeticalExpression .
 
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
+    PLUS_TOKEN   shift, and go to state 66
+    MINUS_TOKEN  shift, and go to state 67
+    MULT_TOKEN   shift, and go to state 68
+    DIV_TOKEN    shift, and go to state 69
+    MOD_TOKEN    shift, and go to state 70
 
     $default  reduce using rule 37 (RelationalExpression)
 
 
 state 106
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   36 RelationalExpression: ArithmeticalExpression LE_TOKEN ArithmeticalExpression .
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   42                  | LogicalExpression AND_TOKEN LogicalExpression .
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
 
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    $default  reduce using rule 36 (RelationalExpression)
+    $default  reduce using rule 42 (LogicalExpression)
 
 
 state 107
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   38 RelationalExpression: ArithmeticalExpression EQ_TOKEN ArithmeticalExpression .
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
+   43                  | LogicalExpression OR_TOKEN LogicalExpression .
 
-    PLUS_TOKEN   shift, and go to state 68
-    MINUS_TOKEN  shift, and go to state 69
-    MULT_TOKEN   shift, and go to state 70
-    DIV_TOKEN    shift, and go to state 71
-    MOD_TOKEN    shift, and go to state 72
-
-    $default  reduce using rule 38 (RelationalExpression)
+    $default  reduce using rule 43 (LogicalExpression)
 
 
 state 108
 
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   43                  | LogicalExpression AND_TOKEN LogicalExpression .
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
-
-    AND_TOKEN  shift, and go to state 79
-    OR_TOKEN   shift, and go to state 80
-
-    AND_TOKEN  [reduce using rule 43 (LogicalExpression)]
-    OR_TOKEN   [reduce using rule 43 (LogicalExpression)]
-    $default   reduce using rule 43 (LogicalExpression)
-
-
-state 109
-
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
-   44                  | LogicalExpression OR_TOKEN LogicalExpression .
-
-    AND_TOKEN  shift, and go to state 79
-    OR_TOKEN   shift, and go to state 80
-
-    AND_TOKEN  [reduce using rule 44 (LogicalExpression)]
-    OR_TOKEN   [reduce using rule 44 (LogicalExpression)]
-    $default   reduce using rule 44 (LogicalExpression)
-
-
-state 110
-
-   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block . Content
-   14        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block . ELSE_TOKEN Block Content
+   12 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block . Content
+   13        | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block . ELSE_TOKEN Block Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
     MUSIC_TYPE    shift, and go to state 12
     IF_TOKEN      shift, and go to state 13
-    ELSE_TOKEN    shift, and go to state 121
+    ELSE_TOKEN    shift, and go to state 119
     FOR_TOKEN     shift, and go to state 14
     DO_TOKEN      shift, and go to state 15
     WHILE_TOKEN   shift, and go to state 16
@@ -1533,56 +1419,85 @@ state 110
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 122
+    Content    go to state 120
+
+
+state 109
+
+   20 ForExpression: NAME ASSIGN_TOKEN Expression .
+
+    $default  reduce using rule 20 (ForExpression)
+
+
+state 110
+
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression . SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
+
+    AND_TOKEN        shift, and go to state 77
+    OR_TOKEN         shift, and go to state 78
+    SEMICOLON_TOKEN  shift, and go to state 121
 
 
 state 111
 
-   21 ForExpression: NAME ASSIGN_TOKEN Expression .
+   21 ForExpression: ForExpression . COMMA_TOKEN ForExpression
+   21              | ForExpression COMMA_TOKEN ForExpression .
 
     $default  reduce using rule 21 (ForExpression)
 
 
 state 112
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression . SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
+   15 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   42 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
+   43                  | LogicalExpression . OR_TOKEN LogicalExpression
 
-    AND_TOKEN        shift, and go to state 79
-    OR_TOKEN         shift, and go to state 80
-    SEMICOLON_TOKEN  shift, and go to state 123
+    AND_TOKEN                shift, and go to state 77
+    OR_TOKEN                 shift, and go to state 78
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 122
 
 
 state 113
 
-   22 ForExpression: ForExpression . COMMA_TOKEN ForExpression
-   22              | ForExpression COMMA_TOKEN ForExpression .
+   10 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block . Content
 
-    COMMA_TOKEN  shift, and go to state 84
+    NAME          shift, and go to state 10
+    TYPE          shift, and go to state 11
+    MUSIC_TYPE    shift, and go to state 12
+    IF_TOKEN      shift, and go to state 13
+    FOR_TOKEN     shift, and go to state 14
+    DO_TOKEN      shift, and go to state 15
+    WHILE_TOKEN   shift, and go to state 16
+    SWITCH_TOKEN  shift, and go to state 17
+    BREAK_TOKEN   shift, and go to state 18
+    WRITE_TOKEN   shift, and go to state 19
 
-    COMMA_TOKEN  [reduce using rule 22 (ForExpression)]
-    $default     reduce using rule 22 (ForExpression)
+    $default  reduce using rule 19 (Content)
+
+    Variables  go to state 20
+    Variable   go to state 21
+    Content    go to state 123
 
 
 state 114
 
-   16 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression . CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-   43 LogicalExpression: LogicalExpression . AND_TOKEN LogicalExpression
-   44                  | LogicalExpression . OR_TOKEN LogicalExpression
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN . Cases CLOSE_BRACKET_TOKEN Content
 
-    AND_TOKEN                shift, and go to state 79
-    OR_TOKEN                 shift, and go to state 80
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 124
+    CASE_TOKEN     shift, and go to state 124
+    DEFAULT_TOKEN  shift, and go to state 125
+
+    Cases  go to state 126
 
 
 state 115
 
-   11 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block . Content
+   17 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -1595,182 +1510,150 @@ state 115
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 125
+    Content    go to state 127
 
 
 state 116
 
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN . Cases CLOSE_BRACKET_TOKEN Content
+   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN . Content
 
-    CASE_TOKEN     shift, and go to state 126
-    DEFAULT_TOKEN  shift, and go to state 127
+    NAME          shift, and go to state 10
+    TYPE          shift, and go to state 11
+    MUSIC_TYPE    shift, and go to state 12
+    IF_TOKEN      shift, and go to state 13
+    FOR_TOKEN     shift, and go to state 14
+    DO_TOKEN      shift, and go to state 15
+    WHILE_TOKEN   shift, and go to state 16
+    SWITCH_TOKEN  shift, and go to state 17
+    BREAK_TOKEN   shift, and go to state 18
+    WRITE_TOKEN   shift, and go to state 19
 
-    Cases  go to state 128
+    $default  reduce using rule 19 (Content)
+
+    Variables  go to state 20
+    Variable   go to state 21
+    Content    go to state 128
 
 
 state 117
 
-   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN . Content
+    8 Content: Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content .
 
-    NAME          shift, and go to state 10
-    TYPE          shift, and go to state 11
-    MUSIC_TYPE    shift, and go to state 12
-    IF_TOKEN      shift, and go to state 13
-    FOR_TOKEN     shift, and go to state 14
-    DO_TOKEN      shift, and go to state 15
-    WHILE_TOKEN   shift, and go to state 16
-    SWITCH_TOKEN  shift, and go to state 17
-    BREAK_TOKEN   shift, and go to state 18
-    WRITE_TOKEN   shift, and go to state 19
-
-    $default  reduce using rule 20 (Content)
-
-    Variables  go to state 20
-    Variable   go to state 21
-    Content    go to state 129
+    $default  reduce using rule 8 (Content)
 
 
 state 118
 
-   19 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN . Content
+   27 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
+   28                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
+   29                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
+   30                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
+   31                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
+   32                       | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression . CLOSE_PARENTHESIS_TOKEN
 
-    NAME          shift, and go to state 10
-    TYPE          shift, and go to state 11
-    MUSIC_TYPE    shift, and go to state 12
-    IF_TOKEN      shift, and go to state 13
-    FOR_TOKEN     shift, and go to state 14
-    DO_TOKEN      shift, and go to state 15
-    WHILE_TOKEN   shift, and go to state 16
-    SWITCH_TOKEN  shift, and go to state 17
-    BREAK_TOKEN   shift, and go to state 18
-    WRITE_TOKEN   shift, and go to state 19
-
-    $default  reduce using rule 20 (Content)
-
-    Variables  go to state 20
-    Variable   go to state 21
-    Content    go to state 130
+    PLUS_TOKEN               shift, and go to state 66
+    MINUS_TOKEN              shift, and go to state 67
+    MULT_TOKEN               shift, and go to state 68
+    DIV_TOKEN                shift, and go to state 69
+    MOD_TOKEN                shift, and go to state 70
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 90
 
 
 state 119
 
-    9 Content: Variable ASSIGN_TOKEN Expression SEMICOLON_TOKEN Content .
+   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN . Block Content
 
-    $default  reduce using rule 9 (Content)
+    OPEN_BRACKET_TOKEN  shift, and go to state 28
+
+    Block  go to state 129
 
 
 state 120
 
-   28 ArithmeticalExpression: ArithmeticalExpression . MULT_TOKEN ArithmeticalExpression
-   29                       | ArithmeticalExpression . DIV_TOKEN ArithmeticalExpression
-   30                       | ArithmeticalExpression . MOD_TOKEN ArithmeticalExpression
-   31                       | ArithmeticalExpression . PLUS_TOKEN ArithmeticalExpression
-   32                       | ArithmeticalExpression . MINUS_TOKEN ArithmeticalExpression
-   33                       | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression . CLOSE_PARENTHESIS_TOKEN
+   12 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content .
 
-    PLUS_TOKEN               shift, and go to state 68
-    MINUS_TOKEN              shift, and go to state 69
-    MULT_TOKEN               shift, and go to state 70
-    DIV_TOKEN                shift, and go to state 71
-    MOD_TOKEN                shift, and go to state 72
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 92
+    $default  reduce using rule 12 (Content)
 
 
 state 121
 
-   14 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN . Block Content
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN . ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
 
-    OPEN_BRACKET_TOKEN  shift, and go to state 28
+    NAME  shift, and go to state 52
 
-    Block  go to state 131
+    $default  reduce using rule 22 (ForExpression)
+
+    ForExpression  go to state 130
 
 
 state 122
 
-   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content .
+   15 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . SEMICOLON_TOKEN Content
 
-    $default  reduce using rule 13 (Content)
+    SEMICOLON_TOKEN  shift, and go to state 131
 
 
 state 123
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN . ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
+   10 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content .
 
-    NAME  shift, and go to state 53
-
-    $default  reduce using rule 23 (ForExpression)
-
-    ForExpression  go to state 132
+    $default  reduce using rule 10 (Content)
 
 
 state 124
 
-   16 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN . SEMICOLON_TOKEN Content
+   49 Cases: CASE_TOKEN . Expression COLON_TOKEN Block Cases
 
-    SEMICOLON_TOKEN  shift, and go to state 133
+    NAME                    shift, and go to state 38
+    MUSIC                   shift, and go to state 39
+    NUMBER                  shift, and go to state 40
+    TRUE_TOKEN              shift, and go to state 41
+    FALSE_TOKEN             shift, and go to state 42
+    OPEN_PARENTHESIS_TOKEN  shift, and go to state 43
+
+    Expression              go to state 132
+    ArithmeticalExpression  go to state 45
+    RelationalExpression    go to state 46
+    LogicalExpression       go to state 47
+    BooleanValue            go to state 48
+    Termin                  go to state 49
 
 
 state 125
 
-   11 Content: WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content .
+   50 Cases: DEFAULT_TOKEN . COLON_TOKEN Block
 
-    $default  reduce using rule 11 (Content)
+    COLON_TOKEN  shift, and go to state 133
 
 
 state 126
 
-   50 Cases: CASE_TOKEN . Expression COLON_TOKEN Block Cases
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases . CLOSE_BRACKET_TOKEN Content
 
-    NAME                    shift, and go to state 39
-    MUSIC                   shift, and go to state 40
-    NUMBER                  shift, and go to state 41
-    TRUE_TOKEN              shift, and go to state 42
-    FALSE_TOKEN             shift, and go to state 43
-    OPEN_PARENTHESIS_TOKEN  shift, and go to state 44
-
-    Expression              go to state 134
-    ArithmeticalExpression  go to state 46
-    RelationalExpression    go to state 47
-    LogicalExpression       go to state 48
-    BooleanValue            go to state 49
-    Termin                  go to state 50
+    CLOSE_BRACKET_TOKEN  shift, and go to state 134
 
 
 state 127
 
-   51 Cases: DEFAULT_TOKEN . COLON_TOKEN Block
+   17 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content .
 
-    COLON_TOKEN  shift, and go to state 135
+    $default  reduce using rule 17 (Content)
 
 
 state 128
 
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases . CLOSE_BRACKET_TOKEN Content
-
-    CLOSE_BRACKET_TOKEN  shift, and go to state 136
-
-
-state 129
-
-   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content .
+   18 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content .
 
     $default  reduce using rule 18 (Content)
 
 
-state 130
+state 129
 
-   19 Content: WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content .
-
-    $default  reduce using rule 19 (Content)
-
-
-state 131
-
-   14 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block . Content
+   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -1783,7 +1666,38 @@ state 131
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
+
+    Variables  go to state 20
+    Variable   go to state 21
+    Content    go to state 135
+
+
+state 130
+
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression . CLOSE_PARENTHESIS_TOKEN Block Content
+   21 ForExpression: ForExpression . COMMA_TOKEN ForExpression
+
+    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 136
+    COMMA_TOKEN              shift, and go to state 82
+
+
+state 131
+
+   15 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN . Content
+
+    NAME          shift, and go to state 10
+    TYPE          shift, and go to state 11
+    MUSIC_TYPE    shift, and go to state 12
+    IF_TOKEN      shift, and go to state 13
+    FOR_TOKEN     shift, and go to state 14
+    DO_TOKEN      shift, and go to state 15
+    WHILE_TOKEN   shift, and go to state 16
+    SWITCH_TOKEN  shift, and go to state 17
+    BREAK_TOKEN   shift, and go to state 18
+    WRITE_TOKEN   shift, and go to state 19
+
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
@@ -1792,16 +1706,23 @@ state 131
 
 state 132
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression . CLOSE_PARENTHESIS_TOKEN Block Content
-   22 ForExpression: ForExpression . COMMA_TOKEN ForExpression
+   49 Cases: CASE_TOKEN Expression . COLON_TOKEN Block Cases
 
-    CLOSE_PARENTHESIS_TOKEN  shift, and go to state 138
-    COMMA_TOKEN              shift, and go to state 84
+    COLON_TOKEN  shift, and go to state 138
 
 
 state 133
 
-   16 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN . Content
+   50 Cases: DEFAULT_TOKEN COLON_TOKEN . Block
+
+    OPEN_BRACKET_TOKEN  shift, and go to state 28
+
+    Block  go to state 139
+
+
+state 134
+
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -1814,100 +1735,62 @@ state 133
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 139
-
-
-state 134
-
-   50 Cases: CASE_TOKEN Expression . COLON_TOKEN Block Cases
-
-    COLON_TOKEN  shift, and go to state 140
+    Content    go to state 140
 
 
 state 135
 
-   51 Cases: DEFAULT_TOKEN COLON_TOKEN . Block
+   13 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content .
+
+    $default  reduce using rule 13 (Content)
+
+
+state 136
+
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN . Block Content
 
     OPEN_BRACKET_TOKEN  shift, and go to state 28
 
     Block  go to state 141
 
 
-state 136
-
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN . Content
-
-    NAME          shift, and go to state 10
-    TYPE          shift, and go to state 11
-    MUSIC_TYPE    shift, and go to state 12
-    IF_TOKEN      shift, and go to state 13
-    FOR_TOKEN     shift, and go to state 14
-    DO_TOKEN      shift, and go to state 15
-    WHILE_TOKEN   shift, and go to state 16
-    SWITCH_TOKEN  shift, and go to state 17
-    BREAK_TOKEN   shift, and go to state 18
-    WRITE_TOKEN   shift, and go to state 19
-
-    $default  reduce using rule 20 (Content)
-
-    Variables  go to state 20
-    Variable   go to state 21
-    Content    go to state 142
-
-
 state 137
 
-   14 Content: IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content .
-
-    $default  reduce using rule 14 (Content)
-
-
-state 138
-
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN . Block Content
-
-    OPEN_BRACKET_TOKEN  shift, and go to state 28
-
-    Block  go to state 143
-
-
-state 139
-
-   16 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content .
-
-    $default  reduce using rule 16 (Content)
-
-
-state 140
-
-   50 Cases: CASE_TOKEN Expression COLON_TOKEN . Block Cases
-
-    OPEN_BRACKET_TOKEN  shift, and go to state 28
-
-    Block  go to state 144
-
-
-state 141
-
-   51 Cases: DEFAULT_TOKEN COLON_TOKEN Block .
-
-    $default  reduce using rule 51 (Cases)
-
-
-state 142
-
-   15 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content .
+   15 Content: DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content .
 
     $default  reduce using rule 15 (Content)
 
 
-state 143
+state 138
 
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block . Content
+   49 Cases: CASE_TOKEN Expression COLON_TOKEN . Block Cases
+
+    OPEN_BRACKET_TOKEN  shift, and go to state 28
+
+    Block  go to state 142
+
+
+state 139
+
+   50 Cases: DEFAULT_TOKEN COLON_TOKEN Block .
+
+    $default  reduce using rule 50 (Cases)
+
+
+state 140
+
+   14 Content: SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content .
+
+    $default  reduce using rule 14 (Content)
+
+
+state 141
+
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block . Content
 
     NAME          shift, and go to state 10
     TYPE          shift, and go to state 11
@@ -1920,32 +1803,32 @@ state 143
     BREAK_TOKEN   shift, and go to state 18
     WRITE_TOKEN   shift, and go to state 19
 
-    $default  reduce using rule 20 (Content)
+    $default  reduce using rule 19 (Content)
 
     Variables  go to state 20
     Variable   go to state 21
-    Content    go to state 145
+    Content    go to state 143
+
+
+state 142
+
+   49 Cases: CASE_TOKEN Expression COLON_TOKEN Block . Cases
+
+    CASE_TOKEN     shift, and go to state 124
+    DEFAULT_TOKEN  shift, and go to state 125
+
+    Cases  go to state 144
+
+
+state 143
+
+   11 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content .
+
+    $default  reduce using rule 11 (Content)
 
 
 state 144
 
-   50 Cases: CASE_TOKEN Expression COLON_TOKEN Block . Cases
+   49 Cases: CASE_TOKEN Expression COLON_TOKEN Block Cases .
 
-    CASE_TOKEN     shift, and go to state 126
-    DEFAULT_TOKEN  shift, and go to state 127
-
-    Cases  go to state 146
-
-
-state 145
-
-   12 Content: FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content .
-
-    $default  reduce using rule 12 (Content)
-
-
-state 146
-
-   50 Cases: CASE_TOKEN Expression COLON_TOKEN Block Cases .
-
-    $default  reduce using rule 50 (Cases)
+    $default  reduce using rule 49 (Cases)

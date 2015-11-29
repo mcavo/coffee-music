@@ -26,14 +26,12 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
 \{									return OPEN_BRACKET_TOKEN;
 \}									return CLOSE_BRACKET_TOKEN;
-\[									return OPEN_SQR_BRACKET_TOKEN;
-\]									return CLOSE_SQR_BRACKET_TOKEN;
 \(									return OPEN_PARENTHESIS_TOKEN;
 \)									return CLOSE_PARENTHESIS_TOKEN;
 
 \;									return SEMICOLON_TOKEN;
 \,									return COMMA_TOKEN;
-\_									return UNDERSCORE_TOKEN;
+
 \:									return COLON_TOKEN;
 
 \%									return MOD_TOKEN;
@@ -45,7 +43,7 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
 \<=									return LE_TOKEN;
 \>=									return GE_TOKEN;
-\=\=									return EQ_TOKEN;
+\=\=								return EQ_TOKEN;
 \!\=								return NE_TOKEN;
 \>									return GT_TOKEN;
 \<									return LT_TOKEN;
