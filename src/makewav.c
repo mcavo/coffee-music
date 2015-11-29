@@ -5,7 +5,6 @@
 int main() {
 	FILE *prewav, *postwav;
 	prewav = fopen("prewav.c","r");
-	postwav = fopen("postwav.c", "w");
 
 	int c;
 	int i=0;
@@ -15,6 +14,7 @@ int main() {
 		i++;
 	}
 	if(i==4 && strcmp(aux, "int ")==0){
+		postwav = fopen("postwav.c", "w");
 		fputs("#include <stdio.h>\n", postwav);
 		fputs("#include <string.h>\n", postwav);
 		fputs("#include <stdlib.h>\n", postwav);
@@ -30,7 +30,8 @@ int main() {
 		fclose(prewav);
 		fclose(postwav);
 	}else{
-		printf("SYNTAX ERROR\n");
+		printf("Su programa no compila\n");
+		remove("prewav.c");
 		exit(1);
 	}
 }
