@@ -117,28 +117,43 @@ void wavfile_write_note( FILE *file, char *nota) {
 	// C C# D D# E F F# G G# A A# B
 	if(strcmp(nota,"C")==0)
 		j = 0;
+	else if(strcmp(nota,"Cb")==0)
+		j = 11;
 	else if(strcmp(nota,"C#")==0)
 		j = 1;
 	else if(strcmp(nota,"D")==0)
 		j = 2;
+	else if(strcmp(nota,"Db")==0)
+		j = 1;
 	else if(strcmp(nota,"D#")==0)
 		j = 3;
 	else if(strcmp(nota,"E")==0)
 		j = 4;
+	else if(strcmp(nota,"Eb")==0)
+		j = 3;
 	else if(strcmp(nota,"F")==0)
 		j = 5;
+	else if(strcmp(nota,"Fb")==0)
+		j = 4;
 	else if(strcmp(nota,"F#")==0)
 		j = 6;
 	else if(strcmp(nota,"G")==0)
 		j = 7;
+	else if(strcmp(nota,"Gb")==0)
+		j = 6;
 	else if(strcmp(nota,"G#")==0)
 		j = 8;
 	else if(strcmp(nota,"A")==0)
 		j = 9;
+	else if(strcmp(nota,"Ab")==0)
+		j = 8;
 	else if(strcmp(nota,"A#")==0)
 		j = 10;
 	else if(strcmp(nota,"B")==0)
 		j = 11;
+	else if(strcmp(nota,"Bb")==0)
+		j = 10;
+
 
 	for(i=0;i<length;i++) {
 		double t = (double) i / WAVFILE_SAMPLES_PER_SECOND;
