@@ -129,7 +129,7 @@ Content
    | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
       { $$ = concat_str( 3, "wavfile_write_music( music, ", $3, ");");}
    | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-      { $$ = concat_str( 3, "wavfile_write_music( music, \"$3\");");}
+      { $$ = concat_str( 3, "wavfile_write_music( music, \"", $3, "\");");}
    |
       { $$ = ""; }
    ;

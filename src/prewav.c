@@ -1,8 +1,8 @@
 int main(void) {
  FILE * music = wavfile_open("music.wav");
 int a = 0;
-char* la = "GGGCGGGGCCCGFFCCGC";
-wavfile_write_music( music, la);
+char* la = "GCGC";
+wavfile_write_music( music, "ABCD");
  wavfile_close(music); 
  return 0;
 }

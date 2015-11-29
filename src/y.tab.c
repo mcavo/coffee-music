@@ -1637,7 +1637,7 @@ yyreduce:
 
   case 20:
 #line 132 "coffee-music.y"
-    { (yyval.strval) = concat_str( 3, "wavfile_write_music( music, \"$3\");");}
+    { (yyval.strval) = concat_str( 3, "wavfile_write_music( music, \"", (yyvsp[(3) - (6)].strval), "\");");}
     break;
 
   case 21:

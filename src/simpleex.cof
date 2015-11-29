@@ -1,5 +1,5 @@
 int main(void){
 	int a = 0;
-	music la = GGGCGGGGCCCGFFCCGC;
-	writemusic(la);
+	music la = GCGC;
+	writemusic(ABCD);
 }
