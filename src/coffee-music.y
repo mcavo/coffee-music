@@ -9,46 +9,32 @@
 char* concat_str(int argc, ...);
 %}
 
-%token FOR_TOKEN WHILE_TOKEN IF_TOKEN ELSE_TOKEN SWITCH_TOKEN DO_TOKEN
-%token PLUS_TOKEN MINUS_TOKEN MULT_TOKEN DIV_TOKEN MOD_TOKEN
-%token ASSIGN_TOKEN GT_TOKEN LT_TOKEN GE_TOKEN LE_TOKEN EQ_TOKEN
-%token AND_TOKEN OR_TOKEN NOT NE_TOKEN
-%token TRUE_TOKEN FALSE_TOKEN BREAK_TOKEN
-%token OPEN_BRACKET_TOKEN CLOSE_BRACKET_TOKEN OPEN_SQR_BRACKET_TOKEN CLOSE_SQR_BRACKET_TOKEN
-%token OPEN_PARENTHESIS_TOKEN CLOSE_PARENTHESIS_TOKEN
-%token COLON_TOKEN SEMICOLON_TOKEN COMMA_TOKEN DOT_TOKEN
-%token WRITE_TOKEN 
-%token CASE_TOKEN DEFAULT_TOKEN RETURN_TOKEN
 %token <strval> NAME
-%token <strval> MUSIC 
+%token <strval> MUSIC
 %token <strval> NUMBER
 %token <strval> TYPE
+%token MAIN_TOKEN VOID_TOKEN RETURN_TOKEN
+%token IF_TOKEN ELSE_TOKEN FOR_TOKEN DO_TOKEN WHILE_TOKEN SWITCH_TOKEN CASE_TOKEN DEFAULT_TOKEN BREAK_TOKEN
+%token PLUS_TOKEN MINUS_TOKEN MULT_TOKEN DIV_TOKEN MOD_TOKEN
+%token AND_TOKEN OR_TOKEN NOT NE_TOKEN ASSIGN_TOKEN GT_TOKEN LT_TOKEN GE_TOKEN LE_TOKEN EQ_TOKEN
+%token TRUE_TOKEN FALSE_TOKEN 
+%token OPEN_PARENTHESIS_TOKEN CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN CLOSE_BRACKET_TOKEN OPEN_SQR_BRACKET_TOKEN CLOSE_SQR_BRACKET_TOKEN
+%token COLON_TOKEN SEMICOLON_TOKEN COMMA_TOKEN 
+%token WRITE_TOKEN 
 
-%type <strval> Objects
 %type <strval> Main
-%type <strval> Class
 %type <strval> Variables
 %type <strval> Variable
-%type <strval> Functions
-%type <strval> Function
-%type <strval> Parameters
-%type <strval> Variable_1
-%type <strval> Variable_2
-%type <strval> Statement
-%type <strval> Expression
-%type <strval> AdditiveExpression
-%type <strval> EqualityExpression
-%type <strval> MultiplicativeExpression
-%type <strval> RelationalExpression
 %type <strval> Block
-%type <strval> ConditionalAndExpression
-%type <strval> ConditionalOrExpression
-%type <strval> Value_1
-%type <strval> Value_2
-%type <strval> Term
+%type <strval> Content
+%type <strval> ForExpression
+%type <strval> Expression
+%type <strval> ArithmeticalExpression
+%type <strval> RelationalExpression
+%type <strval> LogicalExpression
+%type <strval> BooleanValue
+%type <strval> Termin
 %type <strval> Cases
-%type <strval> ForExp
-
 
 %union {
    char* strval;
@@ -57,6 +43,11 @@ char* concat_str(int argc, ...);
 %start Program
 
 %%
+
+Main 
+   : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN Block
+      { $$ = concat_str(3, $1, " main ()\n",$6); }
+   ;
 
 Variables
    : Variables Variable SEMICOLON 
@@ -87,13 +78,13 @@ Content
       { $$ = concat_str( 6,"while ( ", $3, " )\n", $5, "\n", $6); }
    | FOR_TOKEN OPEN_PARENTHESIS_TOKEN ForExpression SEMICOLON_TOKEN LogicalExpression SEMICOLON_TOKEN ForExpression CLOSE_PARENTHESIS_TOKEN Block Content
       { $$ = concat_str( 10, "for ( ", $3, " ; ", $5, " ; ", $7, " )\n", $9, "\n", $10); }
-   | IF_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN Block Content
+   | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block Content
       { $$ = concat_str( 6, "if ( ", $3, " )\n", $5, "\n", $6) ; }
-   | IF_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
+   | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
       { $$ = concat_str( 9, "if ( ",  $3, " )\n", $5, "\n", "else\n", $7 , "\n", $8); }
-   | SWITCH_TOKEN OPEN_PARENTHESIS _TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
       { $$ = concat_str( 6, "switch ( ", $3, " )\n{\n", $6, "\n}", $8); }
-   | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
+   | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
       { $$ = concat_str( 7, "do\n", $2, "\n", "while ( ", $5, " );\n", $8); }
    | BREAK_TOKEN SEMICOLON_TOKEN
       { $$ = "break;\n"; }

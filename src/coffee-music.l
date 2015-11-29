@@ -8,18 +8,34 @@
 
 %%
 
-"for"					{return FOR_TOKEN;}
-"while"					{return WHILE_TOKEN;}
-"if"					{return IF_TOKEN;}
-"do"					{return DO_TOKEN;}
-"else"					{return ELSE_TOKEN;}
+int|music|char\*    	{yylval.strval=strdup(yytext);return TYPE;}
+[a-z][a-z0-9]*			{yylval.strval=strdup(yytext);return NAME;}
+([-]?[1-9][0-9]*)|0		{yylval.strval=strdup(yytext);return NUMBER;}
+([A|B|C|D|E|F|G][#]?)+	{yylval.strval=strdup(yytext);return MUSIC;}
+"main"					{return MAIN_TOKEN;}
+"void"					{return VOID_TOKEN;}
+"return"				{return RETURN_TOKEN;}	
 "true"					{return TRUE_TOKEN;}
 "false"					{return FALSE_TOKEN;}
+"for"					{return FOR_TOKEN;}
+"do"					{return DO_TOKEN;}
+"while"					{return WHILE_TOKEN;}
+"if"					{return IF_TOKEN;}
+"else"					{return ELSE_TOKEN;}
 "writemusic"			{return WRITE_TOKEN;}
-"case"					{return CASE_TOKEN;}
-"default"				{return DEFAULT_TOKEN;}
 "switch"				{return SWITCH_TOKEN;}
+"case"					{return CASE_TOKEN;}
 "break"					{return BREAK_TOKEN;}
+"default"				{return DEFAULT_TOKEN;}
+"{"						{return OPEN_BRACKET_TOKEN;}
+"}"						{return CLOSE_BRACKET_TOKEN;}
+"["						{return OPEN_SQR_BRACKET_TOKEN;}
+"]"						{return CLOSE_SQR_BRACKET_TOKEN;}
+"("						{return OPEN_PARENTHESIS_TOKEN;}
+")"						{return CLOSE_PARENTHESIS_TOKEN;}
+";"						{return SEMICOLON_TOKEN;}
+","						{return COMMA_TOKEN;}
+"_"						{return UNDERSCORE_TOKEN;}
 "+"						{return PLUS_TOKEN;}
 "-"						{return MINUS_TOKEN;}
 "*"						{return MULT_TOKEN;}
@@ -36,20 +52,6 @@
 "||"					{return OR_TOKEN;}
 "&&"					{return AND_TOKEN;}
 "!"						{return NOT_TOKEN;}
-int|music|char\*    	{yylval.strval=strdup(yytext);return TYPE;}
-[a-z][a-z0-9]*			{yylval.strval=strdup(yytext);return NAME;}
-([-]?[1-9][0-9]*)|0		{yylval.strval=strdup(yytext);return NUMBER;}
-([A|B|C|D|E|F|G][#]?)+	{yylval.strval=strdup(yytext);return MUSIC;}
-"{"						{return OPEN_BRACKET_TOKEN;}
-"}"						{return CLOSE_BRACKET_TOKEN;}
-"["						{return OPEN_SQR_BRACKET_TOKEN;}
-"]"						{return CLOSE_SQR_BRACKET_TOKEN;}
-"("						{return OPEN_PARENTHESIS_TOKEN;}
-")"						{return CLOSE_PARENTHESIS_TOKEN;}
-";"						{return SEMICOLON_TOKEN;}
-"."						{return DOT_TOKEN;}
-","						{return COMMA_TOKEN;}
-"_"						{return UNDERSCORE_TOKEN;}
 [ \t\n]						;
 .						{printf("unexpected character\n");}
 
