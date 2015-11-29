@@ -13,7 +13,10 @@ http://www.nd.edu/~dthain/courses/cse20211/fall2013/wavfile
 
 FILE * wavfile_open( const char *filename );
 void wavfile_write( FILE *file, short data[], int length );
-void wavfile_close( FILE * file );
+void wavfile_close( FILE *file );
+
+//Implementada por nosotros
+void wavfile_write_note( FILE *file, char *nota );
 
 #define WAVFILE_SAMPLES_PER_SECOND 44100
 #define NOTES 12

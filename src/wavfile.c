@@ -8,8 +8,14 @@ http://www.nd.edu/~dthain/courses/cse20211/fall2013/wavfile
 #include "wavfile.h"
 
 #include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
+#include <errno.h>
+
+// 								C 		C# 		  D 	   D# 		E 		 F 		  F# 	   G 	    G# 		A 	    A# 		 B
+double frequencies[NOTES] = {261.626, 277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440.0, 466.164, 493.883};
 
 struct wavfile_header {
 	char	riff_tag[4];
@@ -79,4 +85,48 @@ void wavfile_close( FILE *file )
 
 	fclose(file);
 }
+
+void wavfile_write_note( FILE *file, char *nota) {
+	if ( file==NULL || nota==NULL ) {
+		printf("couldn't open sound.wav for writing: %s",strerror(errno));
+	}
+	const int NUM_SAMPLES = (WAVFILE_SAMPLES_PER_SECOND);
+	short waveform[NUM_SAMPLES];
+	int volume = 32000;
+	int length = NUM_SAMPLES;
+	int i,j;
+	//Y asi el .wav sean las 12 notas del vector frequencies (las 7 mas sostenidos)
+	// C C# D D# E F F# G G# A A# B
+	if(strcmp(nota,"C")==0)
+		j = 0;
+	else if(strcmp(nota,"C#")==0)
+		j = 1;
+	else if(strcpm(nota,"D")==0)
+		j = 2;
+	else if(strcmp(nota,"D#")==0)
+		j = 3;
+	else if(strcpm(nota,"E")==0)
+		j = 4;
+	else if(strcmp(nota,"F")==0)
+		j = 5;
+	else if(strcpm(nota,"F#")==0)
+		j = 6;
+	else if(strcmp(nota,"G")==0)
+		j = 7;
+	else if(strcpm(nota,"G#")==0)
+		j = 8;
+	else if(strcpm(nota,"A")==0)
+		j = 9;
+	else if(strcmp(nota,"A#")==0)
+		j = 10;
+	else if(strcpm(nota,"B")==0)
+		j = 11;
+
+	for(i=0;i<length;i++) {
+		double t = (double) i / WAVFILE_SAMPLES_PER_SECOND;
+		waveform[i] = volume*sin(frequencies[j]*t*2*M_PI);
+	}
+	wavfile_write(f,waveform,length);
+}
+
 
