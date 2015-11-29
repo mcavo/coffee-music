@@ -24,10 +24,6 @@ main								yylval.strval=strdup(yytext);return MAIN_TOKEN;
 for									return FOR_TOKEN;
 writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
-([a-z][a-z0-9]*)					yylval.strval=strdup(yytext);return NAME;
-(([-]?[1-9][0-9]*)|0)				yylval.strval=strdup(yytext);return NUMBER;
-((([C|D|F|G|A][#]?)|[E|B])+)		yylval.strval = strdup(yytext);return MUSIC;
-
 \{									return OPEN_BRACKET_TOKEN;
 \}									return CLOSE_BRACKET_TOKEN;
 \[									return OPEN_SQR_BRACKET_TOKEN;
@@ -57,6 +53,12 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 \|\|								return OR_TOKEN;
 \&\&\								return AND_TOKEN;
 \!									return NOT_TOKEN;
+
+([a-z][a-z0-9]*)					yylval.strval=strdup(yytext);return NAME;
+(([-]?[1-9][0-9]*)|0)				yylval.strval=strdup(yytext);return NUMBER;
+((([C|D|F|G|A][#]?)|[E|B])+)		yylval.strval = strdup(yytext);return MUSIC;
+
+
 
 \n									;
 [ \t\n]+							; 
