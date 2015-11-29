@@ -1,0 +1,42 @@
+int main(void) {
+	music a1 = ABABAB;
+	int j=0;
+	int repetitons;
+	music a2 = GFAB;
+	music chorus = ABCDE;
+
+	writemusic(a1);
+
+	for(int i=0; i < repetitions ; i++) {
+		writemusic(a2);
+		if( mod(i,2) ==0) {
+			writemusic(a2);
+		} else {
+			j = j+1;
+	writemusic(chorus);		
+		}
+	} 
+
+	if ( j!=3){
+	 writemusic(a1);
+	} else {
+	}
+
+	do {
+	writemusic(a2);
+		if( mod(j,2) ==0) {
+			writemusic(a2);
+		} else {
+	writemusic(chorus);		
+		}
+		j = j+1;
+
+	} while ( j<=10);
+
+	switch(a2) {
+		case AAA :
+			writemusic(a2); break;
+		default: 
+			writemusic(a1); break;
+	}
+}

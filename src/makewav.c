@@ -18,7 +18,6 @@ int main() {
 	fputs("#include \"getnum.h\"\n", postwav);
 	while((c = fgetc(prewav))!= EOF){
 		fputc(c,postwav);
-		}
 	}
 	fclose(prewav);
 	fclose(postwav);
