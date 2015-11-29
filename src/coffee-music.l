@@ -6,14 +6,14 @@
 
 %%
 
-[\"].*[\"]						{yylval.strval=strdup(yytext);return STRING;}
+
 int									{yylval.strval=strdup(yytext);return TYPE;}
 music								{yylval.strval=strdup(yytext);return MUSIC_TYPE;}
 [a-z][a-z0-9]*						{yylval.strval=strdup(yytext);return NAME;}
 ([-]?[1-9][0-9]*)|0					{yylval.strval=strdup(yytext);return NUMBER;}
 (([C|D|F|G|A][#]?) | [E|B])+		{yylval.strval=strdup(yytext);return MUSIC;}
-"main"								{return MAIN_TOKEN;}
-"void"								{return VOID_TOKEN;}
+main								{return MAIN_TOKEN;}
+void								{return VOID_TOKEN;}
 "true"								{return TRUE_TOKEN;}
 "false"								{return FALSE_TOKEN;}
 "for"								{return FOR_TOKEN;}
