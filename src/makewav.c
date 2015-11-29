@@ -10,10 +10,11 @@ int main() {
 	int c;
 	int i=0;
 	char aux[5];
-	while((c = fgetc(prewav))!= EOF && i<4){
+	while(i<4 && (c = fgetc(prewav))!= EOF){
 		aux[i]=c;
+		i++;
 	}
-	if(i==4 && strcmp(aux, "int ")){
+	if(i==4 && strcmp(aux, "int ")==0){
 		fputs("#include <stdio.h>\n", postwav);
 		fputs("#include <string.h>\n", postwav);
 		fputs("#include <stdlib.h>\n", postwav);

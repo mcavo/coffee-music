@@ -2,4 +2,3 @@
 ./makewav
 gcc -o $1 postwav.c wavfile.c
 ./$1
-

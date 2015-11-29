@@ -167,7 +167,7 @@
 
 void yyerror(const char *str)
 {
-  printf("error: %s\n",str);
+  fprintf(stderr, "error: %s\n",str);
   exit(1);
 }
 char* concat_str(int argc, ...);

@@ -54,7 +54,7 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
 ([a-z][a-z0-9]*)					yylval.strval=strdup(yytext);return NAME;
 (([-]?[1-9][0-9]*)|0)				yylval.strval=strdup(yytext);return NUMBER;
-((([C|D|F|G|A][#]?)|[E|B])+)		yylval.strval = strdup(yytext);return MUSIC;
+((([C|D|F|G|A][#|b]?)|[E|B|S])+)		yylval.strval = strdup(yytext);return MUSIC;
 
 
 
