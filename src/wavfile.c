@@ -15,7 +15,7 @@ http://www.nd.edu/~dthain/courses/cse20211/fall2013/wavfile
 #include <errno.h>
 
 // 								C 		C# 		  D 	   D# 		E 		 F 		  F# 	   G 	    G# 		A 	    A# 		 B
-double frequencies[NOTES] = {261.626, 277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440.0, 466.164, 493.883};
+double frequencies[NOTES] = {261.626, 277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440.0, 466.164, 493.883, 20000};
 
 struct wavfile_header {
 	char	riff_tag[4];
@@ -153,7 +153,8 @@ void wavfile_write_note( FILE *file, char *nota) {
 		j = 11;
 	else if(strcmp(nota,"Bb")==0)
 		j = 10;
-
+	else if(strcmp(nota,"S")==0)
+		j = 13;
 
 	for(i=0;i<length;i++) {
 		double t = (double) i / WAVFILE_SAMPLES_PER_SECOND;
