@@ -9,19 +9,9 @@
 
 int									yylval.strval=strdup(yytext);return TYPE;
 music								yylval.strval=strdup(yytext);return MUSIC_TYPE;
-
-([a-z][a-z0-9]*)					yylval.strval=strdup(yytext);return NAME;
-(([-]?[1-9][0-9]*)|0)				yylval.strval=strdup(yytext);return NUMBER;
-((([C|D|F|G|A][#]?)|[E|B])+)		yylval.strval = strdup(yytext);return MUSIC;
-
 void								yylval.strval=strdup(yytext);return VOID_TOKEN;
-
 true								yylval.strval=strdup(yytext);return TRUE_TOKEN;
 false								yylval.strval=strdup(yytext);return FALSE_TOKEN;
-
-main								yylval.strval=strdup(yytext);return MAIN_TOKEN;
-
-for									yylval.strval=strdup(yytext);return FOR_TOKEN;
 do									yylval.strval=strdup(yytext);return DO_TOKEN;
 while								yylval.strval=strdup(yytext);return WHILE_TOKEN;
 if									yylval.strval=strdup(yytext);return IF_TOKEN;
@@ -30,8 +20,13 @@ switch								yylval.strval=strdup(yytext);return SWITCH_TOKEN;
 case								yylval.strval=strdup(yytext);return CASE_TOKEN;
 break								yylval.strval=strdup(yytext);return BREAK_TOKEN;
 default								yylval.strval=strdup(yytext);return DEFAULT_TOKEN;
-
+main								yylval.strval=strdup(yytext);return MAIN_TOKEN;
+for									return FOR_TOKEN;
 writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
+
+([a-z][a-z0-9]*)					yylval.strval=strdup(yytext);return NAME;
+(([-]?[1-9][0-9]*)|0)				yylval.strval=strdup(yytext);return NUMBER;
+((([C|D|F|G|A][#]?)|[E|B])+)		yylval.strval = strdup(yytext);return MUSIC;
 
 \{									return OPEN_BRACKET_TOKEN;
 \}									return CLOSE_BRACKET_TOKEN;

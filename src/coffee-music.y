@@ -7,6 +7,7 @@
 #include <stdarg.h>
 
 char* concat_str(int argc, ...);
+
 %}
 
 %token <strval> NAME
@@ -18,9 +19,9 @@ char* concat_str(int argc, ...);
 %token <strval> FALSE_TOKEN 
 %token <strval> VOID_TOKEN
 %token <strval> MAIN_TOKEN
-%token <strval>  IF_TOKEN 
+%token <strval> IF_TOKEN 
 %token <strval> ELSE_TOKEN 
-%token <strval> FOR_TOKEN 
+%token FOR_TOKEN 
 %token <strval> DO_TOKEN 
 %token <strval> WHILE_TOKEN 
 %token <strval> SWITCH_TOKEN 
