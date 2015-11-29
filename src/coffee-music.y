@@ -235,5 +235,6 @@ concat_str(int argc, ...){
 int 
 main() {
    printf("");
+   int yydebug = 1;
    yyparse();
 }
