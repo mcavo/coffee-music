@@ -130,7 +130,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 62 "coffee-music.y"
+#line 67 "coffee-music.y"
 {
    char* strval;
 }

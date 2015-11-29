@@ -6,7 +6,13 @@
 #include <stdbool.h>
 #include <stdarg.h>
 
+void yyerror(const char *str)
+{
+  printf("error: %s\n",str);
+  exit(1);
+}
 char* concat_str(int argc, ...);
+
 
 %}
 
@@ -42,7 +48,7 @@ char* concat_str(int argc, ...);
 %left NOT_TOKEN
 %left COMMA_TOKEN
 
-
+%type <strval> Program
 %type <strval> Main
 %type <strval> Variables
 %type <strval> Variable
@@ -62,13 +68,18 @@ char* concat_str(int argc, ...);
    char* strval;
 }
 
-%start Main
+%start Program
 
 %%
 
+Program 
+   : Main
+      { printf("%s\n", $1); }
+   ;
+
 Main 
    : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN MainBlock
-      { $$ = concat_str(3, $1, " main () ",$6); }
+      { $$ = concat_str(2, "int main(void) ",$6); }
    ;
 
 Variables
@@ -78,7 +89,7 @@ Variables
 
 Variable 
    : TYPE NAME
-      { $$ = concat_str( 2, $1, $2); }
+      { $$ = concat_str( 3, $1, " ", $2); }
    | MUSIC_TYPE NAME
       { $$ = concat_str( 2, "char* ", $2);}
    ;
@@ -91,7 +102,7 @@ Block
 
 MainBlock
    : OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN 
-      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"music.wav\");\n", $2, "\n wavfile_close(music); \n return 0;}"); }
+      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"music.wav\");\n", $2, "\n wavfile_close(music); \n return 0;\n}"); }
    ;
 
 Content
@@ -143,36 +154,32 @@ Expression
 
 ArithmeticalExpression
    : Termin
-      { $$ = $1; }
-   | ArithmeticalExpression MULT_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " * ", $3); }
-   | ArithmeticalExpression DIV_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " / ", $3); }
-   | ArithmeticalExpression MOD_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " % ", $3); }
-   | ArithmeticalExpression PLUS_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " + ", $3); }
-   | ArithmeticalExpression MINUS_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " - ", $3); }
-    | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
-      { $$ = concat_str( 3, "( ", $2, " )"); }
+      { $$ = $1; }   
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN MULT_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " * ", "( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN DIV_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " / ", "( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN MOD_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " % ", "( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN PLUS_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " + ", "( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN MINUS_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " - ", "( ", $6, " )"); }
    ;
 
 RelationalExpression
-   : ArithmeticalExpression LT_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " < ", $3); }
-   | ArithmeticalExpression GT_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " > ", $3); }
-   | ArithmeticalExpression LE_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " <= ", $3); }
-   | ArithmeticalExpression GE_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " >= ", $3); }
-   | ArithmeticalExpression EQ_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " == ", $3); }
-   | ArithmeticalExpression NE_TOKEN ArithmeticalExpression
-      { $$ = concat_str(3, $1, " != ", $3); }
-   | OPEN_PARENTHESIS_TOKEN RelationalExpression CLOSE_PARENTHESIS_TOKEN
-      { $$ = concat_str( 3, "( ", $2, " )"); }
+   : OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN LT_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " < ", "( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN GT_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " > ", "( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN LE_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " <= ","( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN GE_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " >= ","( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN EQ_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " == ","( ", $6, " )"); }
+   | OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN NE_TOKEN OPEN_PARENTHESIS_TOKEN ArithmeticalExpression CLOSE_PARENTHESIS_TOKEN
+      { $$ = concat_str(7, "( ", $2, " )", " != ","( ", $6, " )"); }
    ;
 
 LogicalExpression

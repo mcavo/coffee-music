@@ -88,12 +88,16 @@ void wavfile_close( FILE *file )
 
 void wavfile_write_music( FILE *file, char* music){
 	int i;
-	char[3] nota;
+	char nota[3];
 	for(i=0; music[i]!= 0; i++){
 		if(music[i+1]=='#'){
-			nota = [music[i] , music[++i], 0];
+			nota[0] = music[i];
+			nota[1] = music[++i]; 
+			nota[2] = 0;
 		}else{
-			nota = [music[i], 0, 0]
+			nota[0] = music[i];
+			nota[1] = 0; 
+			nota[2] = 0;
 		}
 		wavfile_write_note(file, nota);
 	}
@@ -104,7 +108,7 @@ void wavfile_write_note( FILE *file, char *nota) {
 	if ( file==NULL || nota==NULL ) {
 		printf("couldn't open sound.wav for writing: %s",strerror(errno));
 	}
-	const int NUM_SAMPLES = (WAVFILE_SAMPLES_PER_SECOND);
+	const int NUM_SAMPLES = (WAVFILE_SAMPLES_PER_SECOND*0.5);
 	short waveform[NUM_SAMPLES];
 	int volume = 32000;
 	int length = NUM_SAMPLES;
@@ -115,32 +119,32 @@ void wavfile_write_note( FILE *file, char *nota) {
 		j = 0;
 	else if(strcmp(nota,"C#")==0)
 		j = 1;
-	else if(strcpm(nota,"D")==0)
+	else if(strcmp(nota,"D")==0)
 		j = 2;
 	else if(strcmp(nota,"D#")==0)
 		j = 3;
-	else if(strcpm(nota,"E")==0)
+	else if(strcmp(nota,"E")==0)
 		j = 4;
 	else if(strcmp(nota,"F")==0)
 		j = 5;
-	else if(strcpm(nota,"F#")==0)
+	else if(strcmp(nota,"F#")==0)
 		j = 6;
 	else if(strcmp(nota,"G")==0)
 		j = 7;
-	else if(strcpm(nota,"G#")==0)
+	else if(strcmp(nota,"G#")==0)
 		j = 8;
-	else if(strcpm(nota,"A")==0)
+	else if(strcmp(nota,"A")==0)
 		j = 9;
 	else if(strcmp(nota,"A#")==0)
 		j = 10;
-	else if(strcpm(nota,"B")==0)
+	else if(strcmp(nota,"B")==0)
 		j = 11;
 
 	for(i=0;i<length;i++) {
 		double t = (double) i / WAVFILE_SAMPLES_PER_SECOND;
 		waveform[i] = volume*sin(frequencies[j]*t*2*M_PI);
 	}
-	wavfile_write(f,waveform,length);
+	wavfile_write(file,waveform,length);
 }
 
 

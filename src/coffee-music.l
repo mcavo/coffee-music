@@ -60,9 +60,10 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
 \n									;
 [ \t\n]+							; 
-\.									{printf("unexpected character\n");}
 
 %%
+
+
 
 int yywrap(void)
 {
