@@ -5,45 +5,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdarg.h>
-#include "wavfile.h"
 
-char* 
-concat_str(int argc, ...){
-   
-   char * ans = NULL;
-   char ** args = (char **)malloc(argc*sizeof(char *));
-
-   int size = 0, i;
-
-   va_list ap;
-   va_start(ap, argc);
-   
-   for(i = 0; i < argc; i++)
-   {
-      args[i] = va_arg(ap, char *);
-      size += strlen(args[i]);
-   }
-
-   ans = (char *)malloc((size+1)*sizeof(char)); // size+1 para el '\0'
-
-   for(i = 0; i < argc; i++)
-      sprintf(ans, "%s%s", ans, args[i]);
-
-   va_end(ap);
-   return ans;
-}
-
-int yywrap(void)
-{
-   return 1;
-}
-
-int 
-main() {
-   printf("");
-   yyparse();
-}
-
+char* concat_str(int argc, ...);
 %}
 
 %token <strval> NAME
@@ -51,9 +14,19 @@ main() {
 %token <strval> NUMBER
 %token <strval> TYPE
 %token <strval> MUSIC_TYPE
-%token <strval> TRUE_TOKEN FALSE_TOKEN VOID_TOKEN
+%token <strval> TRUE_TOKEN 
+%token <strval> FALSE_TOKEN 
+%token <strval> VOID_TOKEN
 %token <strval> MAIN_TOKEN
-%token <strval>  IF_TOKEN ELSE_TOKEN FOR_TOKEN DO_TOKEN WHILE_TOKEN SWITCH_TOKEN CASE_TOKEN DEFAULT_TOKEN BREAK_TOKEN
+%token <strval>  IF_TOKEN 
+%token <strval> ELSE_TOKEN 
+%token <strval> FOR_TOKEN 
+%token <strval> DO_TOKEN 
+%token <strval> WHILE_TOKEN 
+%token <strval> SWITCH_TOKEN 
+%token <strval> CASE_TOKEN 
+%token <strval> DEFAULT_TOKEN 
+%token <strval> BREAK_TOKEN
 %token PLUS_TOKEN MINUS_TOKEN MULT_TOKEN DIV_TOKEN MOD_TOKEN
 %token AND_TOKEN OR_TOKEN NOT_TOKEN NE_TOKEN ASSIGN_TOKEN GT_TOKEN LT_TOKEN GE_TOKEN LE_TOKEN EQ_TOKEN
 %token OPEN_PARENTHESIS_TOKEN CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN CLOSE_BRACKET_TOKEN OPEN_SQR_BRACKET_TOKEN CLOSE_SQR_BRACKET_TOKEN
@@ -86,7 +59,7 @@ main() {
 
 Main 
    : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN MainBlock
-      { $$ = concat_str(3, $1, " main ()\n",$6); }
+      { $$ = concat_str(3, $1, " main () ",$6); }
    ;
 
 Variables
@@ -157,6 +130,8 @@ Expression
       { $$ = $1; }
    | ArithmeticalExpression
       { $$ = $1; }
+   | MUSIC
+      { $$ = concat_str(3, "\"", $1, "\""); }
    ;
 
 ArithmeticalExpression
@@ -218,9 +193,7 @@ Termin
       { $$ = $1; }
    | NUMBER
       { $$ = $1; }
-   | MUSIC
-      { $$ = concat_str(3, "\"", $1, "\""); }
-   ;
+   ; 
 
 Cases 
    : CASE_TOKEN Expression COLON_TOKEN Block Cases
@@ -231,3 +204,35 @@ Cases
 
 
 %%
+
+char* 
+concat_str(int argc, ...){
+   
+   char * ans = NULL;
+   char ** args = (char **)malloc(argc*sizeof(char *));
+
+   int size = 0, i;
+
+   va_list ap;
+   va_start(ap, argc);
+   
+   for(i = 0; i < argc; i++)
+   {
+      args[i] = va_arg(ap, char *);
+      size += strlen(args[i]);
+   }
+
+   ans = (char *)malloc((size+1)*sizeof(char)); // size+1 para el '\0'
+
+   for(i = 0; i < argc; i++)
+      sprintf(ans, "%s%s", ans, args[i]);
+
+   va_end(ap);
+   return ans;
+}
+
+int 
+main() {
+   printf("");
+   yyparse();
+}

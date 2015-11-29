@@ -1,16 +1,10 @@
 %{
 #include "y.tab.h"
 
-extern YYSTYPE yylval;
-
-#define TRUE 1
-#define FALSE !TRUE
-
 %}
 %option nounput yylineno
 
 %%
-
 
 
 int									yylval.strval=strdup(yytext);return TYPE;
@@ -75,3 +69,7 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
 %%
 
+int yywrap(void)
+{
+	return 1;
+}
