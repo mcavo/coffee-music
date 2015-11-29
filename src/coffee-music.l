@@ -49,7 +49,7 @@ writemusic							yylval.strval=strdup(yytext);return WRITE_TOKEN;
 
 \<=									return LE_TOKEN;
 \>=									return GE_TOKEN;
-\==									return EQ_TOKEN;
+\=\=									return EQ_TOKEN;
 \!\=								return NE_TOKEN;
 \>									return GT_TOKEN;
 \<									return LT_TOKEN;
