@@ -20,5 +20,5 @@ void wavfile_write_note( FILE *file, char* nota );
 void wavfile_write_music( FILE *file, char* music);
 
 #define WAVFILE_SAMPLES_PER_SECOND 44100
-#define NOTES 12
+#define NOTES 13
 #endif
