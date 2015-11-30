@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ -f $1.cof ];
 then
+
 	./parser < $1.cof > prewav.c
 	./makewav
 	if [ -f prewav.c ];
