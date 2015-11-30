@@ -7,6 +7,8 @@ then
 	./$1
 	rm -f prewav.c
 	rm -f postwav.c
+	rm -f $1
+	mv ec1150e.wav $1.wav
 else
 	echo " "
 fi

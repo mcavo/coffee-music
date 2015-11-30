@@ -12,3 +12,4 @@ clean:
 	rm -f y.tab.c
 	rm -f y.tab.h
 	rm -f postwav.c
+	rm -f *.wav

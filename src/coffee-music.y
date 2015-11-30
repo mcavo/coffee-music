@@ -21,8 +21,7 @@ char* concat_str(int argc, ...);
 %token <strval> TYPE
 %token <strval> MUSIC_TYPE
 %token <strval> TRUE_TOKEN 
-%token <strval> FALSE_TOKEN 
-%token <strval> VOID_TOKEN
+%token <strval> FALSE_TOKEN
 %token <strval> MAIN_TOKEN
 %token <strval> IF_TOKEN 
 %token <strval> ELSE_TOKEN 
@@ -77,8 +76,8 @@ Program
    ;
 
 Main 
-   : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN MainBlock
-      { $$ = concat_str(2, "int main(void) ",$6); }
+   : MAIN_TOKEN MainBlock
+      { $$ = concat_str(2, "int main(void) ",$2); }
    ;
 
 Variables
@@ -101,7 +100,7 @@ Block
 
 MainBlock
    : OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN 
-      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"music.wav\");\n", $2, "\n wavfile_close(music); \n return 0;\n}"); }
+      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"ec1150e.wav\");\n", $2, "\n wavfile_close(music); \n return 0;\n}"); }
    ;
 
 Content
@@ -196,9 +195,9 @@ LogicalExpression
 
 BooleanValue
    :  TRUE_TOKEN
-      { $$ = "true"; }
+      { $$ = "1"; }
    | FALSE_TOKEN
-      { $$ = "false"; }
+      { $$ = "0"; }
    ;
 
 Termin

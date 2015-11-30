@@ -9,7 +9,6 @@
 
 int									yylval.strval=strdup(yytext);return TYPE;
 music								yylval.strval=strdup(yytext);return MUSIC_TYPE;
-void								yylval.strval=strdup(yytext);return VOID_TOKEN;
 true								yylval.strval=strdup(yytext);return TRUE_TOKEN;
 false								yylval.strval=strdup(yytext);return FALSE_TOKEN;
 do									yylval.strval=strdup(yytext);return DO_TOKEN;

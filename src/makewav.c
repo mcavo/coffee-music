@@ -31,7 +31,7 @@ int main() {
 		fclose(postwav);
 	}else{
 		printf("Su programa no compila\n");
-		remove("prewav.c");
+		//remove("prewav.c");
 		exit(1);
 	}
 }

@@ -1,4 +1,4 @@
-int main(void){
+main{
 	music a1 = ABABAB;
 	int j=0;
 	int i=0;
