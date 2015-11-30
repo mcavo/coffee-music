@@ -90,7 +90,7 @@ void wavfile_write_music( FILE *file, char* music){
 	int i;
 	char nota[3];
 	for(i=0; music[i]!= 0; i++){
-		if(music[i+1]=='#'){
+		if(music[i+1]=='#' || music[i+1]=='b'){
 			nota[0] = music[i];
 			nota[1] = music[++i]; 
 			nota[2] = 0;

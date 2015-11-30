@@ -8,7 +8,6 @@
 
 void yyerror(const char *str)
 {
-  fprintf(stderr, "error: %s\n",str);
   exit(1);
 }
 char* concat_str(int argc, ...);
@@ -22,8 +21,7 @@ char* concat_str(int argc, ...);
 %token <strval> TYPE
 %token <strval> MUSIC_TYPE
 %token <strval> TRUE_TOKEN 
-%token <strval> FALSE_TOKEN 
-%token <strval> VOID_TOKEN
+%token <strval> FALSE_TOKEN
 %token <strval> MAIN_TOKEN
 %token <strval> IF_TOKEN 
 %token <strval> ELSE_TOKEN 
@@ -78,8 +76,8 @@ Program
    ;
 
 Main 
-   : TYPE MAIN_TOKEN OPEN_PARENTHESIS_TOKEN VOID_TOKEN CLOSE_PARENTHESIS_TOKEN MainBlock
-      { $$ = concat_str(2, "int main(void) ",$6); }
+   : MAIN_TOKEN MainBlock
+      { $$ = concat_str(2, "int main(void) ",$2); }
    ;
 
 Variables
@@ -102,7 +100,7 @@ Block
 
 MainBlock
    : OPEN_BRACKET_TOKEN Content CLOSE_BRACKET_TOKEN 
-      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"music.wav\");\n", $2, "\n wavfile_close(music); \n return 0;\n}"); }
+      { $$ = concat_str( 3, "{\n FILE * music = wavfile_open(\"ec1150e.wav\");\n", $2, "\n wavfile_close(music); \n return 0;\n}"); }
    ;
 
 Content
@@ -120,16 +118,16 @@ Content
       { $$ = concat_str( 6, "if ( ", $3, " )\n", $5, "\n", $6) ; }
    | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
       { $$ = concat_str( 9, "if ( ",  $3, " )\n", $5, "\n", "else\n", $7 , "\n", $8); }
-   | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Termin CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
       { $$ = concat_str( 6, "switch ( ", $3, " )\n{\n", $6, "\n}", $8); }
    | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
       { $$ = concat_str( 7, "do\n", $2, "\n", "while ( ", $5, " );\n", $8); }
    | BREAK_TOKEN SEMICOLON_TOKEN Content
       { $$ = "break;\n"; }
    | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN NAME CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-      { $$ = concat_str( 3, "wavfile_write_music( music, ", $3, ");");}
+      { $$ = concat_str( 4, "wavfile_write_music( music, ", $3, ");\n",$6);}
    | WRITE_TOKEN OPEN_PARENTHESIS_TOKEN MUSIC CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
-      { $$ = concat_str( 3, "wavfile_write_music( music, \"", $3, "\");");}
+      { $$ = concat_str( 4, "wavfile_write_music( music, \"", $3, "\");\n",$6);}
    |
       { $$ = ""; }
    ;
@@ -197,9 +195,9 @@ LogicalExpression
 
 BooleanValue
    :  TRUE_TOKEN
-      { $$ = "true"; }
+      { $$ = "1"; }
    | FALSE_TOKEN
-      { $$ = "false"; }
+      { $$ = "0"; }
    ;
 
 Termin
