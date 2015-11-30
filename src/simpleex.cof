@@ -1,5 +1,7 @@
 main{
 	int a = 0;
 	music la = GCGC;
+	writemusic(ABD);
 	writemusic(DDEDGFSDDEDAGSDDDBGFESCCBGAG);
+	int b;
 }
