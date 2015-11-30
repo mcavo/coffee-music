@@ -29,7 +29,7 @@ int main() {
 		fclose(prewav);
 		fclose(postwav);
 	}else{
-		printf("Su programa no compila\n");
+		printf("The program does not compile.\n");
 		remove("prewav.c");
 		exit(1);
 	}

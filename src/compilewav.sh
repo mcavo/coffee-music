@@ -14,7 +14,7 @@ then
 		rm -f prewav.c
 		mv ec1150e.wav $1.wav
 	else
-		echo " "
+		echo "No magic for you."
 	fi	
 else
 	echo "File $1.cof does not exist."
