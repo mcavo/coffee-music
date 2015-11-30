@@ -1,0 +1,27 @@
+main{
+	 int i;
+	 int j = 0;
+	 music a = C#;
+	 music b = D#FD#SS ;
+	 music c;
+	 for(i = 0; ((i)!=(4)) ; i = (i)+(1)){
+					 writemusic(a);
+	} 
+	writemusic(CC#S);  
+
+
+	 writemusic(a);
+	 writemusic(CC#S);
+	 writemusic(b);
+
+	 while(((i)<=(3))){
+	  			writemusic(a);
+	  			j = (j)+(2);
+	 }
+	 writemusic(CC#SC#G#);
+}
+
+
+
+
+
