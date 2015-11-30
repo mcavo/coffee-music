@@ -8,6 +8,6 @@ Para generar a partir de un file.cof un file.wav debe seguir los siguientes paso
 
 1) make
 
-2) ./compile.sh cof_file 
+2) ./compilewav.sh cof_file 
 
 Y a disfrutar!
