@@ -1,0 +1,10 @@
+main{
+	int i;
+	int b;
+	int a;
+	for(i = 0; ((i)<(2)) ; i = (i)+(1)){
+	}
+  	for (b = 0 , a = 0 ; (((a)<(10)) && ((b)<(5))) ; b=(b)+(1) , a=(a)+(1)) {
+  		writemusic(D#);
+  	}
+}
