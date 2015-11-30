@@ -15,7 +15,7 @@ http://www.nd.edu/~dthain/courses/cse20211/fall2013/wavfile
 #include <errno.h>
 
 // 								C 		C# 		  D 	   D# 		E 		 F 		  F# 	   G 	    G# 		A 	    A# 		 B
-double frequencies[NOTES] = {261.626, 277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440.0, 466.164, 493.883, 20000};
+double frequencies[NOTES] = {261.626, 277.183, 293.665, 311.127, 329.628, 349.228, 369.994, 391.995, 415.305, 440.0, 466.164, 493.883, 20000, 523.251, 554.365, 587.330, 622.254, 659.255, 698.456, 739.989, 783.991,830.609,880.000,932.328, 987.767};
 
 struct wavfile_header {
 	char	riff_tag[4];
@@ -154,7 +154,45 @@ void wavfile_write_note( FILE *file, char *nota) {
 	else if(strcmp(nota,"Bb")==0)
 		j = 10;
 	else if(strcmp(nota,"S")==0)
+		j = 12;
+	else if(strcmp(nota,"C5")==0)
 		j = 13;
+	else if(strcmp(nota,"Cb5")==0)
+		j = 24;
+	else if(strcmp(nota,"C#5")==0)
+		j = 14;
+	else if(strcmp(nota,"D5")==0)
+		j = 15;
+	else if(strcmp(nota,"Db5")==0)
+		j = 14;
+	else if(strcmp(nota,"D#5")==0)
+		j = 16;
+	else if(strcmp(nota,"E5")==0)
+		j = 17;
+	else if(strcmp(nota,"Eb5")==0)
+		j = 16;
+	else if(strcmp(nota,"F5")==0)
+		j = 18;
+	else if(strcmp(nota,"Fb5")==0)
+		j = 17;
+	else if(strcmp(nota,"F#5")==0)
+		j = 19;
+	else if(strcmp(nota,"G5")==0)
+		j = 20;
+	else if(strcmp(nota,"Gb5")==0)
+		j = 19;
+	else if(strcmp(nota,"G#5")==0)
+		j = 21;
+	else if(strcmp(nota,"A5")==0)
+		j = 22;
+	else if(strcmp(nota,"Ab5")==0)
+		j = 21;
+	else if(strcmp(nota,"A#5")==0)
+		j = 23;
+	else if(strcmp(nota,"B5")==0)
+		j = 24;
+	else if(strcmp(nota,"Bb5")==0)
+		j = 23;
 
 	for(i=0;i<length;i++) {
 		double t = (double) i / WAVFILE_SAMPLES_PER_SECOND;
