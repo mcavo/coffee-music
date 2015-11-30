@@ -118,7 +118,7 @@ Content
       { $$ = concat_str( 6, "if ( ", $3, " )\n", $5, "\n", $6) ; }
    | IF_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN Block ELSE_TOKEN Block Content
       { $$ = concat_str( 9, "if ( ",  $3, " )\n", $5, "\n", "else\n", $7 , "\n", $8); }
-   | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Expression CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
+   | SWITCH_TOKEN OPEN_PARENTHESIS_TOKEN Termin CLOSE_PARENTHESIS_TOKEN OPEN_BRACKET_TOKEN Cases CLOSE_BRACKET_TOKEN Content
       { $$ = concat_str( 6, "switch ( ", $3, " )\n{\n", $6, "\n}", $8); }
    | DO_TOKEN Block WHILE_TOKEN OPEN_PARENTHESIS_TOKEN LogicalExpression CLOSE_PARENTHESIS_TOKEN SEMICOLON_TOKEN Content
       { $$ = concat_str( 7, "do\n", $2, "\n", "while ( ", $5, " );\n", $8); }
