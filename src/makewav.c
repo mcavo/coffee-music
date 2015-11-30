@@ -22,7 +22,6 @@ int main() {
 		fputs("#include <time.h>\n", postwav);
 		fputs("#include <errno.h>\n", postwav);
 		fputs("#include \"wavfile.h\"\n", postwav);
-		fputs("#include \"getnum.h\"\n", postwav);
 		fputs(aux, postwav);
 		while((c = fgetc(prewav))!= EOF){
 			fputc(c,postwav);

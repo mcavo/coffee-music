@@ -1,0 +1,19 @@
+main {
+  int a = 4;
+  switch(a) {
+  case 1: { writemusic(AASAAS); break; }
+  case 4: { writemusic(BBSBBSBBSBBS); break; }
+  default: { writemusic(CCCCC); }
+  }
+
+  int b;
+  for ( b=0 , a=0 ; (((a)<(10)) && ((b)<(5))) ; b=(b)+(1) , a=(a)+(1)) {
+  writemusic(D#D#S);
+  }
+  b=4;
+  do {
+  writemusic(CCS);
+  b=(b)+(1);
+  } while ( true && ( (b) <= (6) ) );
+
+}

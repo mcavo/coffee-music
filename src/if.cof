@@ -1,7 +1,0 @@
-main {
-	if(true) {
-		writemusic(CCCCCC);
-	} else {
-		writemusic(SSSSSS);
-	}
-}

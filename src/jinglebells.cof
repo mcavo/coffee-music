@@ -1,0 +1,30 @@
+
+main {
+  int a = 1;
+  int i;
+
+  switch(a) {
+	  case 1: { 
+	  		for(i = 0; ((i)!=(2)) ; i = (i)+(1)){
+				writemusic(EEES);
+			}
+	  }
+	  case 2: { writemusic(EGCDE); }
+	  case 5: { 
+	  		while((((i)<=(8)) || false)){
+	  			writemusic(S);
+	  			i = (i)*(2);
+	  		}
+	  }
+	  default: { 
+	  		if((i)>=(2)){
+				writemusic(FFF);
+			}
+	 }
+  }
+
+  music b;
+  b = EEGGEDC;
+  writemusic(SFFEES);
+  writemusic(b);
+}

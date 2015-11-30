@@ -40,8 +40,8 @@ writemusic										yylval.strval=strdup(yytext);return WRITE_TOKEN;
 \/												return DIV_TOKEN;
 \=												return ASSIGN_TOKEN;
 
-\<=												return LE_TOKEN;
-\>=												return GE_TOKEN;
+\<\=											return LE_TOKEN;
+\>\=											return GE_TOKEN;
 \=\=											return EQ_TOKEN;
 \!\=											return NE_TOKEN;
 \>												return GT_TOKEN;
