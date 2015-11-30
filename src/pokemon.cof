@@ -1,0 +1,27 @@
+main{
+	music a = C#EF#;
+	music b = SC#;
+	music d = G#SC#;
+
+	writemusic(a);
+	writemusic(b);
+	writemusic(a);
+	music c = F#;
+	writemusic(c);
+	writemusic(ES);
+	writemusic(c);
+	writemusic(c);
+	writemusic(G#AG#F#ESC#DAASEEAA);
+	int i = 0;
+	while(((i)!=(2))){
+	  			writemusic(SA);
+	  			i = (i)+(1);
+	}
+	writemusic(d);
+	writemusic(a);
+	music e = F#SC#;
+	writemusic(e);
+	writemusic(a);
+	writemusic(AEF#SS);
+	writemusic(a);
+}
